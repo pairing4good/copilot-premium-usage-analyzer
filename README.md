@@ -164,17 +164,17 @@ This "capacity-only" view is valuable for:
 
 ### Core Assumption
 
-**1 Premium Request = 15 Minutes of Developer Time**
+**1 Premium Request = 15 Minutes of AI-Assisted Developer Capacity**
 
 GitHub Copilot Premium allocates a monthly quota measured in **premium requests** (units of AI usage). Each seat receives 300 premium requests per month.
 
 **The Calculation:**
 ```
 300 premium requests × 15 minutes per request = 4,500 minutes
-4,500 minutes ÷ 60 = 75 hours of potential AI-assisted development time per developer
+4,500 minutes ÷ 60 = 75 hours of AI-assisted developer capacity per seat
 ```
 
-This assumption is based on the value that AI pair programming features (like extended conversations with Claude or GPT-4) provide in accelerating development work, code reviews, debugging, and architectural decisions. Each premium request represents an interaction with Copilot Chat where a developer asks a question, requests code generation, or seeks assistance - and we estimate each of these interactions saves approximately 15 minutes compared to solving the problem manually.
+This assumption is based on the value that AI pair programming features (like extended conversations with Claude or GPT-4) provide as **virtual developer capacity** added to your team. Each premium request represents an interaction with Copilot Chat where AI assistance handles work that would otherwise require manual developer effort - asking questions, generating code, debugging, or reviewing - effectively adding 15 minutes of productive capacity to your team for each interaction.
 
 ### Why Enable These Pre-Paid Features?
 
@@ -206,37 +206,37 @@ Total Available Hours = Total Available Minutes ÷ 60
 36,000 minutes ÷ 60 = 600 hours of AI developer capacity
 ```
 
-### Time Saved Calculation
+### AI Capacity Used Calculation
 
-Time saved is calculated based on actual token usage:
+AI capacity used is calculated based on actual token usage:
 
 ```
-Time Saved Minutes = Tokens Used × 15 minutes per token
-Time Saved Hours = Time Saved Minutes ÷ 60
+Capacity Used (Minutes) = Tokens Used × 15 minutes per token
+Capacity Used (Hours) = Capacity Used (Minutes) ÷ 60
 ```
 
 **Example:**
 ```
 851 tokens used × 15 minutes = 12,765 minutes
-12,765 minutes ÷ 60 = 212.75 hours saved
+12,765 minutes ÷ 60 = 212.75 hours of AI capacity utilized
 ```
 
 ### Unused Potential Calculation
 
 ```
 Unused Tokens = Total Available Tokens - Tokens Used
-Unused Minutes = Unused Tokens × 15 minutes per token
-Unused Hours = Unused Minutes ÷ 60
+Unused Capacity (Minutes) = Unused Tokens × 15 minutes per token
+Unused Capacity (Hours) = Unused Capacity (Minutes) ÷ 60
 ```
 
 **Example:**
 ```
 (2,400 - 851) = 1,549 unused tokens
 1,549 tokens × 15 minutes = 23,235 minutes
-23,235 minutes ÷ 60 = 387.25 hours unused
+23,235 minutes ÷ 60 = 387.25 hours of unused AI capacity
 ```
 
-**Validation:** Time Saved + Unused Potential = Total Opportunity ✓
+**Validation:** AI Capacity Used + Unused Potential = Total Opportunity ✓
 
 ### Dollar Value Calculation
 
