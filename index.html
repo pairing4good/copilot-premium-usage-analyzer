@@ -1201,17 +1201,18 @@
         function renderProductivity(metrics) {
             const container = document.getElementById('productivityContent');
             
-            // Get monthly quota from data (should be 300 minutes per seat)
-            const monthlyQuotaPerSeat = 300; // minutes per seat from total_monthly_quota column
+            // Get monthly quota from data
+            const monthlyQuotaPerSeat = 300; // premium requests per seat
+            const minutesPerRequest = 15; // Each request = 15 minutes of AI capacity
             const totalSeats = metrics.totalSeats;
             
             // Total opportunity in minutes and hours
-            const totalMinutesAvailable = totalSeats * monthlyQuotaPerSeat;
+            const totalMinutesAvailable = totalSeats * monthlyQuotaPerSeat * minutesPerRequest;
             const totalHoursAvailable = totalMinutesAvailable / 60;
             
             // Calculate hours used based on proportion of requests
             const usedRequests = metrics.totalRequests;
-            const totalAvailableRequests = totalMinutesAvailable; // Assuming 1 request = 1 minute of quota
+            const totalAvailableRequests = totalSeats * monthlyQuotaPerSeat;
             const hoursUsed = (usedRequests / totalAvailableRequests) * totalHoursAvailable;
             
             // Calculate lost hours
@@ -1229,17 +1230,17 @@
                     <div class="productivity-metric">
                         <div class="productivity-metric-label">Total Opportunity</div>
                         <div class="productivity-metric-value">${totalHoursAvailable.toFixed(0)} hrs</div>
-                        <div class="productivity-metric-subtitle">$${totalValue.toFixed(0)}</div>
+                        <div class="productivity-metric-subtitle">$${totalValue.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0})}</div>
                     </div>
                     <div class="productivity-metric productivity-metric-success">
                         <div class="productivity-metric-label">Time Saved</div>
                         <div class="productivity-metric-value">${hoursUsed.toFixed(0)} hrs</div>
-                        <div class="productivity-metric-subtitle">$${usedValue.toFixed(0)}</div>
+                        <div class="productivity-metric-subtitle">$${usedValue.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0})}</div>
                     </div>
                     <div class="productivity-metric productivity-metric-warning">
                         <div class="productivity-metric-label">Unused Potential</div>
                         <div class="productivity-metric-value">${hoursLost.toFixed(0)} hrs</div>
-                        <div class="productivity-metric-subtitle">$${lostValue.toFixed(0)}</div>
+                        <div class="productivity-metric-subtitle">$${lostValue.toLocaleString('en-US', {minimumFractionDigits: 0, maximumFractionDigits: 0})}</div>
                     </div>
                 </div>
             `;

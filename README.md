@@ -62,6 +62,9 @@ Premium tokens power **GitHub Copilot Chat** - an interactive AI pair programmin
 
 **The Bottom Line:** Premium tokens represent your team's capacity to leverage advanced AI for complex development tasks. Unused tokens = missed opportunities for velocity, quality, and developer satisfaction.
 
+> **💡 KEY INSIGHT**  
+> Premium tokens represent your team's capacity to leverage advanced AI for complex development tasks. **Unused tokens = missed opportunities for velocity, quality, and developer satisfaction.**
+
 This analyzer helps you measure how effectively your team is using this AI capacity and identify opportunities to increase ROI.
 
 ### ⚠️ Critical: Premium Features Must Be Enabled
@@ -76,6 +79,9 @@ This analyzer helps you measure how effectively your team is using this AI capac
 - ❌ No premium AI models (GPT-4, Claude 3.5 Sonnet, etc.)
 - ❌ **Your organization is paying for Premium but receiving Standard value**
 - ❌ **300 tokens per seat per month go completely unused** - representing hundreds of hours of potential productivity gains left on the table
+
+> **⚠️ CRITICAL OPPORTUNITY**  
+> If your analyzer shows **zero or very low token usage**, premium features may not be enabled organization-wide. **This represents hundreds of hours per month of AI capacity your team is already paying for but not using.** A team of 10 developers with unused quotas = **3,000 hours (125 days) of potential productivity disappearing every month.**
 
 **If premium features are enabled:**
 - ✅ Developers can access the full suite of AI pair programming tools
@@ -93,7 +99,8 @@ Organization administrators should:
 3. **Communicate to Developers**: Ensure team members know these features are available and how to access them in their IDE (VS Code, Visual Studio, JetBrains, etc.)
 4. **Monitor Usage**: Use this analyzer to track adoption and ensure you're getting value from your investment
 
-**Important:** If your analyzer shows zero or very low token usage, premium features may not be enabled organization-wide. This represents a critical opportunity to unlock significant productivity gains your team is already paying for.
+> **💰 ROI REALITY CHECK**  
+> **You've already paid for 300 premium requests per developer per month.** Failing to enable premium features means paying for advanced AI capabilities while receiving only basic autocomplete. **Unused quota resets monthly - it's use it or lose it.**
 
 ## 🚀 Quick Start
 
@@ -176,6 +183,10 @@ GitHub Copilot Premium allocates a monthly quota measured in **premium requests*
 
 This assumption is based on the value that AI pair programming features (like extended conversations with Claude or GPT-4) provide as **virtual developer capacity** added to your team. Each premium request represents an interaction with Copilot Chat where AI assistance handles work that would otherwise require manual developer effort - asking questions, generating code, debugging, or reviewing - effectively adding 15 minutes of productive capacity to your team for each interaction.
 
+> **📊 CAPACITY CALCULATION**  
+> **300 premium requests × 15 minutes = 75 hours of AI capacity per developer per month**  
+> This is virtual developer capacity added to your team. A team of 10 = **750 hours/month of AI-assisted development capacity** included in your Premium licenses.
+
 ### Why Enable These Pre-Paid Features?
 
 Organizations purchase Copilot Premium licenses as a **pre-paid investment** in developer productivity - paying upfront for 300 premium requests per developer per month. However, **these requests only deliver value when they're actually used**. 
@@ -190,7 +201,8 @@ Enabling premium features is critical because:
 
 - **Measurable ROI**: With premium features enabled and this analyzer tracking usage, leadership can demonstrate concrete ROI through metrics like time saved, adoption rates, and productivity impact - turning an abstract "AI investment" into quantifiable business value.
 
-**Bottom line**: If your organization is paying for Copilot Premium but hasn't enabled premium features, you're funding innovation for competitors while your own teams work without the AI advantage you've already purchased.
+> **🚨 BOTTOM LINE**  
+> **If your organization is paying for Copilot Premium but hasn't enabled premium features, you're funding innovation for competitors while your own teams work without the AI advantage you've already purchased.**
 
 ### Token-to-Time Conversion
 
