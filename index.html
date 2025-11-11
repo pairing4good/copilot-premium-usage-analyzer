@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Copilot Premium Usage Analyzer</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            color: #2d3748;
+            margin-bottom: 3px;
+            font-size: 1.4em;
+        }
+
+        .subtitle {
+            color: #718096;
+            font-size: 0.9em;
+        }
+
+        .upload-section {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: 1fr 200px 150px;
+            gap: 15px;
+            align-items: end;
+        }
+
+        .input-group {
+            margin-bottom: 0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2d3748;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        input[type="file"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="file"]:focus,
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .dashboard {
+            display: none;
+        }
+
+        .dashboard.active {
+            display: block;
+        }
+
+        .dashboard.active ~ .header,
+        body:has(.dashboard.active) .header,
+        body:has(.dashboard.active) .upload-section {
+            display: none;
+        }
+
+        .dashboard-header {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dashboard-title {
+            color: #2d3748;
+            font-size: 1.3em;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            padding: 8px 20px;
+            border: 2px solid #667eea;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .metric-label {
+            color: #718096;
+            font-size: 0.85em;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .metric-value {
+            color: #2d3748;
+            font-size: 1.8em;
+            font-weight: bold;
+        }
+
+        .metric-subtitle {
+            color: #a0aec0;
+            font-size: 0.8em;
+            margin-top: 3px;
+        }
+
+        .chart-container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .charts-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .chart-container-small {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .chart-container-small canvas {
+            max-height: 220px;
+        }
+
+        .chart-container-full {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+
+        .chart-container-full canvas {
+            max-height: 180px;
+        }
+
+        .chart-title {
+            color: #2d3748;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .chart-container-small .chart-title {
+            font-size: 0.95em;
+            margin-bottom: 10px;
+        }
+
+        .chart-container-full .chart-title {
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+
+        .insights-section {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .productivity-section {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+        }
+
+        .productivity-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+
+        .productivity-grid-three {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+
+        .productivity-metric {
+            text-align: center;
+            padding: 12px;
+            background: #f7fafc;
+            border-radius: 8px;
+        }
+
+        .productivity-metric-success {
+            background: #f0fff4;
+            border: 2px solid #68d391;
+        }
+
+        .productivity-metric-warning {
+            background: #fffaf0;
+            border: 2px solid #ed8936;
+        }
+
+        .productivity-metric-label {
+            color: #718096;
+            font-size: 0.85em;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .productivity-metric-value {
+            color: #2d3748;
+            font-size: 1.6em;
+            font-weight: bold;
+        }
+
+        .productivity-metric-subtitle {
+            color: #718096;
+            font-size: 0.9em;
+            margin-top: 3px;
+            font-weight: 600;
+        }
+
+        .productivity-note {
+            background: #edf2f7;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            color: #4a5568;
+            line-height: 1.5;
+            border-left: 4px solid #667eea;
+            margin-bottom: 8px;
+        }
+
+        .productivity-warning-note {
+            background: #fffaf0;
+            border-left: 4px solid #ed8936;
+            color: #744210;
+        }
+
+        .insight-item {
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            background: #f7fafc;
+            border-radius: 4px;
+        }
+
+        .insight-title {
+            color: #2d3748;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .insight-text {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        .table-container {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #2d3748;
+            font-size: 0.9em;
+        }
+
+        tr:hover {
+            background: #f7fafc;
+        }
+
+        .warning {
+            color: #d69e2e;
+            font-weight: 600;
+        }
+
+        .success {
+            color: #38a169;
+            font-weight: 600;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #718096;
+        }
+
+        .empty-state h2 {
+            color: #2d3748;
+            margin-bottom: 10px;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .alert-info {
+            background: #bee3f8;
+            color: #2c5282;
+            border-left: 4px solid #3182ce;
+        }
+
+        .alert-warning {
+            background: #feebc8;
+            color: #7c2d12;
+            border-left: 4px solid #dd6b20;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header" id="header">
+            <h1>📊 GitHub Copilot Premium Usage Analyzer</h1>
+            <p class="subtitle">Gain valuable insights into your team's AI-assisted development</p>
+        </div>
+
+        <div class="upload-section" id="uploadSection">
+            <div class="input-group">
+                <label for="csvFile">Upload Premium Request Usage Report (CSV)</label>
+                <input type="file" id="csvFile" accept=".csv">
+            </div>
+            
+            <div class="input-group">
+                <label for="seatLicenses">Number of Copilot Seat Licenses</label>
+                <input type="number" id="seatLicenses" min="1" placeholder="e.g., 8" value="8">
+            </div>
+
+            <button class="btn" id="analyzeBtn" disabled>Analyze Report</button>
+        </div>
+
+        <div id="dashboard" class="dashboard">
+            <div class="dashboard-header">
+                <h2 class="dashboard-title">📊 GitHub Copilot Premium Usage Report</h2>
+                <button class="btn-secondary" id="backBtn">← Upload New Report</button>
+            </div>
+
+            <div class="productivity-section">
+                <h2 class="chart-title">⏱️ AI Developer Capacity Utilization</h2>
+                <div id="productivityContent"></div>
+            </div>
+            
+            <div class="metrics-grid" id="metricsGrid"></div>
+            
+            <div class="charts-row">
+                <div class="chart-container-small">
+                    <h2 class="chart-title">Model Distribution</h2>
+                    <canvas id="modelChart"></canvas>
+                </div>
+
+                <div class="chart-container-small">
+                    <h2 class="chart-title">User Activity</h2>
+                    <canvas id="userChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-container-full">
+                <h2 class="chart-title">Daily Usage</h2>
+                <canvas id="dailyUsageChart"></canvas>
+            </div>
+
+            <div class="table-container">
+                <h2 class="chart-title">User Details</h2>
+                <table id="userTable"></table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let csvData = null;
+        let seatCount = 0;
+        
+        const fileInput = document.getElementById('csvFile');
+        const seatInput = document.getElementById('seatLicenses');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const dashboard = document.getElementById('dashboard');
+
+        // Enable analyze button when both inputs are provided
+        function checkInputs() {
+            analyzeBtn.disabled = !(fileInput.files.length > 0 && seatInput.value > 0);
+        }
+
+        fileInput.addEventListener('change', checkInputs);
+        seatInput.addEventListener('input', checkInputs);
+
+        analyzeBtn.addEventListener('click', () => {
+            const file = fileInput.files[0];
+            seatCount = parseInt(seatInput.value);
+            
+            Papa.parse(file, {
+                header: true,
+                dynamicTyping: true,
+                skipEmptyLines: true,
+                complete: (results) => {
+                    csvData = results.data;
+                    analyzeData();
+                }
+            });
+        });
+
+        // Back button to show upload form again
+        document.addEventListener('click', (e) => {
+            if (e.target && e.target.id === 'backBtn') {
+                dashboard.classList.remove('active');
+                document.getElementById('header').style.display = 'block';
+                document.getElementById('uploadSection').style.display = 'grid';
+            }
+        });
+
+        function analyzeData() {
+            if (!csvData || csvData.length === 0) {
+                showEmptyState();
+                return;
+            }
+
+            // Calculate metrics
+            const metrics = calculateMetrics(csvData);
+            
+            // Show dashboard and hide header/upload section
+            dashboard.classList.add('active');
+            document.getElementById('header').style.display = 'none';
+            document.getElementById('uploadSection').style.display = 'none';
+            
+            // Render components
+            renderMetrics(metrics);
+            renderCharts(metrics);
+            renderProductivity(metrics);
+            renderUserTable(metrics);
+        }
+
+        function showEmptyState() {
+            dashboard.classList.add('active');
+            document.getElementById('header').style.display = 'none';
+            document.getElementById('uploadSection').style.display = 'none';
+            document.getElementById('metricsGrid').innerHTML = `
+                <div class="empty-state" style="grid-column: 1 / -1;">
+                    <h2>No Premium Requests Found</h2>
+                    <p>This report contains no premium request usage data. This means no one has used premium features during this period.</p>
+                </div>
+            `;
+        }
+
+        function calculateMetrics(data) {
+            const totalRequests = data.reduce((sum, row) => sum + (row.quantity || 0), 0);
+            const totalCost = data.reduce((sum, row) => sum + (row.net_amount || 0), 0);
+            
+            // User statistics
+            const userStats = {};
+            data.forEach(row => {
+                const user = row.username;
+                if (!userStats[user]) {
+                    userStats[user] = {
+                        requests: 0,
+                        cost: 0,
+                        models: new Set()
+                    };
+                }
+                userStats[user].requests += row.quantity || 0;
+                userStats[user].cost += row.net_amount || 0;
+                userStats[user].models.add(row.model);
+            });
+
+            const activeUsers = Object.keys(userStats).length;
+            const adoptionRate = (activeUsers / seatCount) * 100;
+
+            // Model statistics
+            const modelStats = {};
+            data.forEach(row => {
+                const model = row.model;
+                if (!modelStats[model]) {
+                    modelStats[model] = { requests: 0, cost: 0 };
+                }
+                modelStats[model].requests += row.quantity || 0;
+                modelStats[model].cost += row.net_amount || 0;
+            });
+
+            // Daily statistics
+            const dailyStats = {};
+            data.forEach(row => {
+                const date = row.date;
+                if (!dailyStats[date]) {
+                    dailyStats[date] = { requests: 0, cost: 0 };
+                }
+                dailyStats[date].requests += row.quantity || 0;
+                dailyStats[date].cost += row.net_amount || 0;
+            });
+
+            // Calculate quota usage - IMPORTANT: Based on ALL seats, not just active users
+            const monthlyQuotaPerUser = 300; // From the data
+            const totalAvailableQuota = seatCount * monthlyQuotaPerUser; // Use total seats, not active users
+            const quotaUsagePercent = (totalRequests / totalAvailableQuota) * 100;
+
+            return {
+                totalRequests,
+                totalCost,
+                activeUsers,
+                adoptionRate,
+                userStats,
+                modelStats,
+                dailyStats,
+                avgRequestsPerUser: totalRequests / seatCount, // Average across ALL seats
+                avgCostPerUser: totalCost / seatCount, // Average across ALL seats
+                avgRequestsPerActiveUser: activeUsers > 0 ? totalRequests / activeUsers : 0, // Average for active users only
+                avgCostPerActiveUser: activeUsers > 0 ? totalCost / activeUsers : 0, // Average for active users only
+                quotaUsagePercent,
+                totalSeats: seatCount,
+                unusedSeats: seatCount - activeUsers
+            };
+        }
+
+        function renderMetrics(metrics) {
+            const metricsGrid = document.getElementById('metricsGrid');
+            
+            metricsGrid.innerHTML = `
+                <div class="metric-card">
+                    <div class="metric-label">Total Premium Requests</div>
+                    <div class="metric-value">${metrics.totalRequests.toLocaleString()}</div>
+                    <div class="metric-subtitle">avg ${metrics.avgRequestsPerActiveUser.toFixed(1)} per active user</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-label">Adoption Rate</div>
+                    <div class="metric-value">${metrics.adoptionRate.toFixed(1)}%</div>
+                    <div class="metric-subtitle ${metrics.adoptionRate < 50 ? 'warning' : 'success'}">
+                        ${metrics.activeUsers} of ${metrics.totalSeats} licenses active
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-label">Quota Utilization</div>
+                    <div class="metric-value">${metrics.quotaUsagePercent.toFixed(1)}%</div>
+                    <div class="metric-subtitle">of total available quota (${metrics.totalSeats} × 300)</div>
+                </div>
+            `;
+        }
+
+        let dailyChart, modelChart, userChart;
+
+        function renderCharts(metrics) {
+            renderDailyChart(metrics.dailyStats);
+            renderModelChart(metrics.modelStats);
+            renderUserChart(metrics.userStats);
+        }
+
+        function renderDailyChart(dailyStats) {
+            const ctx = document.getElementById('dailyUsageChart').getContext('2d');
+            const dates = Object.keys(dailyStats).sort();
+            const requests = dates.map(date => dailyStats[date].requests);
+
+            // Destroy existing chart if it exists
+            if (dailyChart) {
+                dailyChart.destroy();
+            }
+
+            dailyChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: dates.map(d => new Date(d).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })),
+                    datasets: [{
+                        label: 'Requests',
+                        data: requests,
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0,
+                                font: {
+                                    size: 11
+                                }
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                maxRotation: 0,
+                                minRotation: 0,
+                                font: {
+                                    size: 10
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderModelChart(modelStats) {
+            const ctx = document.getElementById('modelChart').getContext('2d');
+            const models = Object.keys(modelStats);
+            const requests = models.map(model => modelStats[model].requests);
+
+            const colors = [
+                '#667eea', '#764ba2', '#f093fb', '#4facfe',
+                '#43e97b', '#fa709a', '#fee140', '#30cfd0'
+            ];
+
+            // Destroy existing chart if it exists
+            if (modelChart) {
+                modelChart.destroy();
+            }
+
+            modelChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: models,
+                    datasets: [{
+                        data: requests,
+                        backgroundColor: colors.slice(0, models.length)
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                boxWidth: 12,
+                                font: {
+                                    size: 10
+                                },
+                                padding: 8
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderUserChart(userStats) {
+            const ctx = document.getElementById('userChart').getContext('2d');
+            const users = Object.keys(userStats)
+                .sort((a, b) => userStats[b].requests - userStats[a].requests)
+                .slice(0, 5);
+            const requests = users.map(user => userStats[user].requests);
+
+            const colors = [
+                '#667eea', '#764ba2', '#f093fb', '#4facfe', '#43e97b'
+            ];
+
+            // Destroy existing chart if it exists
+            if (userChart) {
+                userChart.destroy();
+            }
+
+            userChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: users,
+                    datasets: [{
+                        data: requests,
+                        backgroundColor: colors.slice(0, users.length)
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                boxWidth: 12,
+                                font: {
+                                    size: 10
+                                },
+                                padding: 8
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderProductivity(metrics) {
+            const container = document.getElementById('productivityContent');
+            
+            // Get monthly quota from data (should be 300 minutes per seat)
+            const monthlyQuotaPerSeat = 300; // minutes per seat from total_monthly_quota column
+            const totalSeats = metrics.totalSeats;
+            
+            // Total opportunity in minutes and hours
+            const totalMinutesAvailable = totalSeats * monthlyQuotaPerSeat;
+            const totalHoursAvailable = totalMinutesAvailable / 60;
+            
+            // Calculate hours used based on proportion of requests
+            const usedRequests = metrics.totalRequests;
+            const totalAvailableRequests = totalMinutesAvailable; // Assuming 1 request = 1 minute of quota
+            const hoursUsed = (usedRequests / totalAvailableRequests) * totalHoursAvailable;
+            
+            // Calculate lost hours
+            const unusedRequests = totalAvailableRequests - usedRequests;
+            const hoursLost = (unusedRequests / totalAvailableRequests) * totalHoursAvailable;
+            
+            // Calculate dollar values at $100/hour
+            const developerHourlyRate = 100;
+            const totalValue = totalHoursAvailable * developerHourlyRate;
+            const usedValue = hoursUsed * developerHourlyRate;
+            const lostValue = hoursLost * developerHourlyRate;
+            
+            container.innerHTML = `
+                <div class="productivity-grid-three">
+                    <div class="productivity-metric">
+                        <div class="productivity-metric-label">Total Opportunity</div>
+                        <div class="productivity-metric-value">${totalHoursAvailable.toFixed(0)} hrs</div>
+                        <div class="productivity-metric-subtitle">$${totalValue.toFixed(0)}</div>
+                    </div>
+                    <div class="productivity-metric productivity-metric-success">
+                        <div class="productivity-metric-label">Time Saved</div>
+                        <div class="productivity-metric-value">${hoursUsed.toFixed(0)} hrs</div>
+                        <div class="productivity-metric-subtitle">$${usedValue.toFixed(0)}</div>
+                    </div>
+                    <div class="productivity-metric productivity-metric-warning">
+                        <div class="productivity-metric-label">Unused Potential</div>
+                        <div class="productivity-metric-value">${hoursLost.toFixed(0)} hrs</div>
+                        <div class="productivity-metric-subtitle">$${lostValue.toFixed(0)}</div>
+                    </div>
+                </div>
+                <div class="productivity-note productivity-warning-note">
+                    ⚠️ <strong>Warning:</strong> Premium request quota resets monthly. Unused quota (${(unusedRequests / 60).toFixed(0)} of ${(totalAvailableRequests / 60).toFixed(0)} hours) is lost if not used.
+                </div>
+                <div class="productivity-note">
+                    <strong>Methodology:</strong> Based on ${totalSeats} seats × ${monthlyQuotaPerSeat} minutes quota = ${totalMinutesAvailable.toLocaleString()} total minutes (${totalHoursAvailable.toFixed(0)} hours) at $100/hour developer rate.
+                </div>
+            `;
+        }
+
+        function renderInsights(metrics) {
+            const container = document.getElementById('insightsContainer');
+            const insights = [];
+
+            // Adoption insight
+            if (metrics.adoptionRate < 30) {
+                insights.push({
+                    title: '⚠️ Low Adoption Rate',
+                    text: `Only ${metrics.adoptionRate.toFixed(1)}% of your team (${metrics.activeUsers} out of ${metrics.totalSeats} seats) is using premium features. Consider training sessions or communications to increase awareness and adoption. You have ${metrics.unusedSeats} unused licenses representing untapped potential.`
+                });
+            } else if (metrics.adoptionRate < 60) {
+                insights.push({
+                    title: '📊 Moderate Adoption',
+                    text: `${metrics.adoptionRate.toFixed(1)}% adoption rate (${metrics.activeUsers} of ${metrics.totalSeats} seats) shows growing interest. Focus on power users to evangelize benefits and share best practices with the remaining ${metrics.unusedSeats} license holders.`
+                });
+            } else {
+                insights.push({
+                    title: '✅ Strong Adoption',
+                    text: `Excellent! ${metrics.adoptionRate.toFixed(1)}% of licenses (${metrics.activeUsers} of ${metrics.totalSeats} seats) are actively used. This indicates strong value recognition across the team.`
+                });
+            }
+
+            // Cost efficiency - Now based on all seats
+            insights.push({
+                title: '💰 Cost Analysis',
+                text: `Total monthly cost: $${metrics.totalCost.toFixed(2)} for ${metrics.totalSeats} seats ($${metrics.avgCostPerUser.toFixed(2)} per seat). Active users average $${metrics.avgCostPerActiveUser.toFixed(2)} each. ${metrics.unusedSeats > 0 ? `With ${metrics.unusedSeats} unused seats, consider reallocating licenses or investing in adoption initiatives to improve ROI.` : 'All licenses are being utilized effectively.'}`
+            });
+
+            // Quota utilization - Now correctly based on total seats
+            if (metrics.quotaUsagePercent < 20) {
+                insights.push({
+                    title: '📉 Low Quota Utilization',
+                    text: `Only ${metrics.quotaUsagePercent.toFixed(1)}% of total available quota is being used (${metrics.totalRequests} of ${metrics.totalSeats * 300} total requests across all seats). This indicates significant unused capacity. Active users may benefit from training on advanced features, or non-active users need onboarding.`
+                });
+            } else if (metrics.quotaUsagePercent > 80) {
+                insights.push({
+                    title: '📈 High Quota Usage',
+                    text: `${metrics.quotaUsagePercent.toFixed(1)}% quota utilization across all seats indicates power users are maximizing their premium features. Monitor for users approaching limits and consider this strong engagement in ROI calculations.`
+                });
+            } else {
+                insights.push({
+                    title: '📊 Moderate Quota Usage',
+                    text: `${metrics.quotaUsagePercent.toFixed(1)}% of total available quota is being used (${metrics.totalRequests} of ${metrics.totalSeats * 300} requests). There's room for growth, especially among the ${metrics.unusedSeats} inactive seats.`
+                });
+            }
+
+            // Model diversity
+            const modelCount = Object.keys(metrics.modelStats).length;
+            const topModel = Object.keys(metrics.modelStats).reduce((a, b) => 
+                metrics.modelStats[a].requests > metrics.modelStats[b].requests ? a : b
+            );
+            insights.push({
+                title: '🤖 Model Usage Patterns',
+                text: `Team is using ${modelCount} different AI models. ${topModel} is the most popular with ${((metrics.modelStats[topModel].requests / metrics.totalRequests) * 100).toFixed(1)}% of requests. Diverse model usage indicates users are experimenting with different capabilities.`
+            });
+
+            // User concentration
+            const topUsers = Object.entries(metrics.userStats)
+                .sort((a, b) => b[1].requests - a[1].requests)
+                .slice(0, 3);
+            const top3Requests = topUsers.reduce((sum, [_, stats]) => sum + stats.requests, 0);
+            const concentrationPercent = (top3Requests / metrics.totalRequests) * 100;
+            
+            if (concentrationPercent > 60) {
+                insights.push({
+                    title: '👥 Usage Concentration',
+                    text: `Top 3 users (${topUsers.map(([name]) => name).join(', ')}) account for ${concentrationPercent.toFixed(1)}% of premium requests. Consider having these power users share their workflows and use cases to boost adoption among the other ${metrics.totalSeats - 3} seats.`
+                });
+            }
+
+            // ROI perspective
+            const estimatedTimeSaved = metrics.totalRequests * 5; // Assume 5 minutes saved per request
+            insights.push({
+                title: '⏱️ Estimated Productivity Impact',
+                text: `With ${metrics.totalRequests.toLocaleString()} premium requests, your team potentially saved ~${(estimatedTimeSaved / 60).toFixed(0)} hours of development time this month. At an average developer rate of $100/hr, that's approximately $${((estimatedTimeSaved / 60) * 100).toFixed(0)} in value generated from a $${metrics.totalCost.toFixed(2)} investment (${(((estimatedTimeSaved / 60) * 100) / metrics.totalCost).toFixed(1)}x return).`
+            });
+
+            container.innerHTML = insights.map(insight => `
+                <div class="insight-item">
+                    <div class="insight-title">${insight.title}</div>
+                    <div class="insight-text">${insight.text}</div>
+                </div>
+            `).join('');
+        }
+
+        function renderUserTable(metrics) {
+            const table = document.getElementById('userTable');
+            const users = Object.entries(metrics.userStats)
+                .sort((a, b) => b[1].requests - a[1].requests);
+
+            const tableHTML = `
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Premium Requests</th>
+                        <th>Total Cost</th>
+                        <th>Avg Cost/Request</th>
+                        <th>Models Used</th>
+                        <th>% of Total Usage</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${users.map(([username, stats]) => `
+                        <tr>
+                            <td>${username}</td>
+                            <td>${stats.requests.toLocaleString()}</td>
+                            <td>$${stats.cost.toFixed(2)}</td>
+                            <td>$${(stats.cost / stats.requests).toFixed(3)}</td>
+                            <td>${stats.models.size}</td>
+                            <td>${((stats.requests / metrics.totalRequests) * 100).toFixed(1)}%</td>
+                        </tr>
+                    `).join('')}
+                </tbody>
+            `;
+
+            table.innerHTML = tableHTML;
+        }
+    </script>
+</body>
+</html>
