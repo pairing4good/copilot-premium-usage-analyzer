@@ -693,7 +693,7 @@
             
             <div class="input-group">
                 <label for="seatLicenses">Number of Copilot Seat Licenses</label>
-                <input type="number" id="seatLicenses" min="1" placeholder="e.g., 8" value="8">
+                <input type="number" id="seatLicenses" min="1" placeholder="e.g., 8">
             </div>
 
             <div class="input-group">
@@ -706,6 +706,9 @@
             <div class="checkbox-group">
                 <input type="checkbox" id="noCsvCheckbox">
                 <label for="noCsvCheckbox">No premium request analytics CSV available (calculate capacity only)</label>
+            </div>
+
+            <div id="errorMessage" style="display: none; grid-column: 1 / -1; margin-top: 10px; padding: 12px; background-color: #fee2e2; border-left: 4px solid #dc2626; border-radius: 6px; color: #991b1b;">
             </div>
         </div>
 
@@ -860,6 +863,10 @@
         });
 
         function analyzeData() {
+            // Clear any previous error messages
+            const errorMessage = document.getElementById('errorMessage');
+            errorMessage.style.display = 'none';
+            
             // Check if running in "capacity-only" mode (checkbox checked, no CSV)
             const isCapacityOnlyMode = noCsvCheckbox.checked;
             
@@ -881,6 +888,14 @@
                     // Actually no data - show error
                     showEmptyState();
                 }
+                return;
+            }
+
+            // Validate that seat count is at least equal to number of unique users in CSV
+            const uniqueUsers = new Set(csvData.map(row => row.username)).size;
+            if (seatCount < uniqueUsers) {
+                errorMessage.innerHTML = `<strong>Validation Error:</strong> The Number of Copilot Seat Licenses (${seatCount}) must be at least equal to the number of unique users in the CSV file (${uniqueUsers}). Please increase the seat count to at least ${uniqueUsers}.`;
+                errorMessage.style.display = 'block';
                 return;
             }
 

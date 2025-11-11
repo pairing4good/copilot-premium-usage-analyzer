@@ -118,10 +118,13 @@ Organization administrators should:
 
 3. **Upload and analyze**
    - Upload your CSV file (if available)
-   - Enter your total number of Copilot seat licenses
+   - Enter your total number of Copilot seat licenses (**must be at least equal to the number of unique users in your CSV file**)
    - **Enter your average developer hourly rate** (defaults to $100/hr - adjust to match your organization's actual cost per developer hour including salary, benefits, and overhead)
    - If you don't have a CSV file, check "No premium request analytics CSV available" to see your total capacity potential
    - Click "Analyze Report"
+
+> **⚠️ VALIDATION:**  
+> If you upload a CSV file, the number of seat licenses you enter must be **at least equal to the number of unique users** in the CSV. If the seat count is too low, you'll see an error message telling you the minimum required value.
 
 ### Running Without a CSV File
 
@@ -306,6 +309,12 @@ date,username,product,sku,model,quantity,unit_type,applied_cost_per_quantity,gro
 - `total_monthly_quota` - Monthly token allocation (typically 300)
 
 ## ⚠️ Important Notes
+
+### Seat Count Validation
+
+When uploading a CSV file, **the number of seat licenses you enter must be at least equal to the number of unique users in the CSV file.** This ensures accurate adoption rate and utilization calculations. If your seat count is too low, the tool will display an error message and prompt you to increase it to the minimum required value.
+
+**Example:** If your CSV contains usage from 8 unique developers, you must enter at least 8 for the number of seat licenses.
 
 ### Token Expiration
 
