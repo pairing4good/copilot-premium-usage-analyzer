@@ -97,19 +97,40 @@ Organization administrators should:
 
 ## 🚀 Quick Start
 
-1. **Export your usage report** from GitHub's billing dashboard
+1. **Export your usage report** from GitHub's billing dashboard (Optional)
    - Navigate to your GitHub organization settings
    - Go to Billing → Usage reports
    - Download the "Premium Request Usage Report" CSV
+   - **Note**: If you don't have access to usage reports yet, you can still use this tool to calculate your team's available AI capacity
 
 2. **Open the tool** 
    - Simply open `index.html` in any modern web browser
    - No installation or server required
 
 3. **Upload and analyze**
-   - Upload your CSV file
+   - Upload your CSV file (if available)
    - Enter your total number of Copilot seat licenses
+   - If you don't have a CSV file, check "No premium request analytics CSV available" to see your total capacity potential
    - Click "Analyze Report"
+
+### Running Without a CSV File
+
+If premium request analytics are not yet available for your organization (common in the first month of Premium adoption or if features aren't enabled), you can still use this tool:
+
+1. Check the box: ☑️ "No premium request analytics CSV available (calculate capacity only)"
+2. Enter your number of Copilot seat licenses
+3. Click "Analyze Report"
+
+The tool will show you:
+- **Total AI capacity** your organization has available (hours per month)
+- **Potential productivity gains** if premium features were fully utilized
+- **Dollar value** of your pre-paid AI capacity
+
+This "capacity-only" view is valuable for:
+- **Initial planning** - Understanding the scale of AI assistance you've purchased
+- **Baseline setting** - Establishing what full utilization would look like
+- **Business case building** - Demonstrating potential ROI to justify enabling premium features
+- **First-month scenarios** - Before usage data is available from GitHub
 
 ## 📈 What You'll See
 
