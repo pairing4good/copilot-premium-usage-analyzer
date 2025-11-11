@@ -97,6 +97,8 @@ Organization administrators should:
 
 ## 🚀 Quick Start
 
+![Upload Form](screenshots/001-form.png)
+
 1. **Export your usage report** from GitHub's billing dashboard (Optional)
    - Navigate to your GitHub organization settings
    - Go to Billing → Usage reports
@@ -136,6 +138,8 @@ This "capacity-only" view is valuable for:
 
 ### Executive Summary (Above the Fold)
 
+![Executive Dashboard](screenshots/002-exec.png)
+
 **AI Usage Overview**
 - Total Premium Tokens Used
 - Adoption Rate (% of licenses actively using premium features)
@@ -147,6 +151,8 @@ This "capacity-only" view is valuable for:
 - Unused Potential (AI hours going unused)
 
 ### Detailed Analysis (Below the Fold)
+
+![Detailed Report](screenshots/003-detail.png)
 
 - **Key Insights & Recommendations** - AI-generated analysis of adoption patterns, usage concentration, and optimization opportunities
 - **Model Distribution** - Which AI models (Claude, GPT, etc.) your team prefers
