@@ -2,6 +2,16 @@
 
 A comprehensive analytics tool for engineering leaders to measure AI developer capacity utilization and ROI from GitHub Copilot Premium features.
 
+## 🌐 Live Tool
+
+**Use the tool instantly (no download required):**  
+👉 **https://pairing4good.github.io/copilot-premium-usage-analyzer/**
+
+> **🔒 Privacy Guarantee:**  
+> This tool runs **100% in your browser**. No data is ever sent to any server or saved anywhere. Your usage reports remain completely private and never leave your machine. Safe to use with sensitive organizational data.
+
+**Prefer to run locally?** Download `index.html` and run it offline - see [Quick Start](#-quick-start) section below for instructions.
+
 ## 📊 Purpose
 
 This tool transforms raw GitHub Copilot Premium usage data into actionable insights for technical leadership. It answers critical questions about your AI investment:
