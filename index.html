@@ -1334,9 +1334,20 @@
 
                 // ROI perspective
                 const estimatedTimeSaved = metrics.totalRequests * 5; // Assume 5 minutes saved per token usage
+                const savedHours = (estimatedTimeSaved / 60).toFixed(0);
+                const dollarValue = ((estimatedTimeSaved / 60) * 100).toFixed(0);
+                
+                let roiText;
+                if (metrics.totalCost > 0) {
+                    const returnMultiple = (((estimatedTimeSaved / 60) * 100) / metrics.totalCost).toFixed(1);
+                    roiText = `With ${metrics.totalRequests.toLocaleString()} AI tokens used, your team potentially saved ~${savedHours} hours of development time this month. At an average developer rate of $100/hr, that's approximately $${dollarValue} in productivity value generated from a $${metrics.totalCost.toFixed(2)} usage cost (${returnMultiple}x return on incremental usage costs).`;
+                } else {
+                    roiText = `With ${metrics.totalRequests.toLocaleString()} AI tokens used, your team potentially saved ~${savedHours} hours of development time this month. At an average developer rate of $100/hr, that's approximately $${dollarValue} in productivity value generated. Premium tokens are included in your license cost, making this additional value with no incremental usage fees.`;
+                }
+                
                 insights.push({
                     title: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> Estimated Productivity Impact',
-                    text: `With ${metrics.totalRequests.toLocaleString()} AI tokens used, your team potentially saved ~${(estimatedTimeSaved / 60).toFixed(0)} hours of development time this month. At an average developer rate of $100/hr, that's approximately $${((estimatedTimeSaved / 60) * 100).toFixed(0)} in value generated from a $${metrics.totalCost.toFixed(2)} investment (${(((estimatedTimeSaved / 60) * 100) / metrics.totalCost).toFixed(1)}x return).`
+                    text: roiText
                 });
 
                 // Unused tokens recommendation
