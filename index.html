@@ -142,10 +142,12 @@
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
             margin-bottom: 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             border-left: 5px solid #667eea;
+            position: relative;
+        }
+
+        .dashboard-header .btn-secondary {
+            display: none;
         }
 
         .dashboard-title {
@@ -466,14 +468,17 @@
 
         /* Scroll indicator */
         .scroll-indicator {
-            text-align: center;
-            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 40px;
             background: white;
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
             margin-bottom: 24px;
             cursor: pointer;
             transition: all 0.3s;
+            position: relative;
         }
 
         .scroll-indicator:hover {
@@ -481,15 +486,27 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
         }
 
+        .scroll-indicator-content {
+            text-align: center;
+        }
+
+        .scroll-indicator .btn-secondary {
+            position: absolute;
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
         .scroll-indicator-text {
             color: #667eea;
             font-size: 1em;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .scroll-arrow {
-            display: inline-block;
+            display: flex;
+            justify-content: center;
             animation: bounce 2s infinite;
         }
 
@@ -612,6 +629,24 @@
             .productivity-grid-three {
                 grid-template-columns: 1fr;
             }
+
+            .scroll-indicator {
+                display: none;
+            }
+
+            .dashboard-header {
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                align-items: stretch;
+            }
+
+            .dashboard-header .btn-secondary {
+                display: block;
+                position: static;
+                transform: none;
+                order: 1;
+            }
         }
     </style>
 </head>
@@ -645,6 +680,7 @@
 
         <div id="dashboard" class="dashboard">
             <div class="dashboard-header">
+                <button class="btn-secondary" id="backBtn" onclick="event.stopPropagation()">← Upload New Report</button>
                 <h2 class="dashboard-title">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;">
                         <line x1="18" y1="20" x2="18" y2="10"></line>
@@ -653,7 +689,6 @@
                     </svg>
                     GitHub Copilot Premium Usage Report
                 </h2>
-                <button class="btn-secondary" id="backBtn">← Upload New Report</button>
             </div>
 
             <!-- Executive Summary - Above the Fold -->
@@ -682,12 +717,15 @@
 
             <!-- Scroll Indicator -->
             <div class="scroll-indicator" onclick="document.getElementById('detailedAnalysis').scrollIntoView({ behavior: 'smooth' })">
-                <div class="scroll-indicator-text">View Detailed Analysis & Insights</div>
-                <div class="scroll-arrow">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                    </svg>
+                <div class="scroll-indicator-content">
+                    <div class="scroll-indicator-text">View Detailed Analysis & Insights</div>
+                    <div class="scroll-arrow">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#667eea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </div>
                 </div>
+                <button class="btn-secondary" id="backBtn" onclick="event.stopPropagation()">← Upload New Report</button>
             </div>
 
             <!-- Detailed Analysis - Below the Fold -->
