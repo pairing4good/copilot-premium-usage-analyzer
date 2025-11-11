@@ -11,6 +11,90 @@ This tool transforms raw GitHub Copilot Premium usage data into actionable insig
 - **Which developers are leveraging AI effectively?**
 - **Are we leaving productivity gains on the table?**
 
+## 🤖 Understanding GitHub Copilot Premium Tokens
+
+### What Are Premium Tokens?
+
+GitHub Copilot comes in two tiers:
+
+**Standard Copilot** provides inline code completions and basic suggestions as you type - the familiar autocomplete experience.
+
+**Copilot Premium** unlocks advanced AI capabilities through a **token-based quota system**. Each Premium seat receives 300 tokens per month to access powerful features that go far beyond simple autocomplete.
+
+### What Premium Tokens Enable
+
+Premium tokens power **GitHub Copilot Chat** - an interactive AI pair programming experience where developers can:
+
+**🔍 Deep Code Understanding**
+- Ask complex questions about unfamiliar codebases
+- Get explanations of how legacy code works
+- Understand architectural patterns and design decisions
+- Trace dependencies and data flows
+
+**🛠️ Advanced Development Tasks**
+- Generate entire functions, classes, or modules from natural language descriptions
+- Refactor code with intelligent suggestions
+- Write comprehensive unit tests automatically
+- Debug issues through conversational troubleshooting
+
+**🎯 Context-Aware Assistance**
+- Multi-file code analysis and generation
+- Repository-wide context understanding
+- Integration with your existing codebase patterns
+- Access to premium AI models (GPT-4, Claude 3.5 Sonnet, etc.)
+
+**📝 Documentation & Reviews**
+- Generate API documentation
+- Create README files and code comments
+- Perform AI-assisted code reviews
+- Explain pull request changes
+
+### Why Teams Should Use Premium Tokens
+
+**Without using premium tokens**, developers are limited to basic autocomplete - useful, but only scratching the surface of AI-assisted development.
+
+**With premium tokens**, developers gain an AI pair programmer that can:
+- Reduce time spent understanding unfamiliar code from hours to minutes
+- Accelerate feature development by generating boilerplate and complex logic
+- Improve code quality through AI-assisted testing and reviews
+- Onboard new team members faster with instant codebase explanations
+- Solve blocking issues through interactive debugging sessions
+
+**The Bottom Line:** Premium tokens represent your team's capacity to leverage advanced AI for complex development tasks. Unused tokens = missed opportunities for velocity, quality, and developer satisfaction.
+
+This analyzer helps you measure how effectively your team is using this AI capacity and identify opportunities to increase ROI.
+
+### ⚠️ Critical: Premium Features Must Be Enabled
+
+**Premium models and capabilities are disabled by default** in most GitHub Copilot configurations. Even if your organization is paying for Premium licenses, developers cannot access these advanced features until they are explicitly enabled.
+
+#### Why This Matters for Your Organization
+
+**If premium features are disabled:**
+- ❌ Developers only get basic autocomplete (Standard Copilot behavior)
+- ❌ No access to Copilot Chat or conversational AI assistance
+- ❌ No premium AI models (GPT-4, Claude 3.5 Sonnet, etc.)
+- ❌ **Your organization is paying for Premium but receiving Standard value**
+- ❌ **300 tokens per seat per month go completely unused** - representing hundreds of hours of potential productivity gains left on the table
+
+**If premium features are enabled:**
+- ✅ Developers can access the full suite of AI pair programming tools
+- ✅ Multi-turn conversations for complex problem solving
+- ✅ Context-aware code generation across entire repositories
+- ✅ **Actual ROI on your Premium investment**
+- ✅ **Measurable productivity gains** that this analyzer can track
+
+#### How to Enable Premium Features
+
+Organization administrators should:
+
+1. **Enable Copilot Chat**: In GitHub organization settings → Copilot → Enable "Copilot Chat in the IDE"
+2. **Enable Premium Models**: Allow access to premium AI models (GPT-4, Claude, etc.)
+3. **Communicate to Developers**: Ensure team members know these features are available and how to access them in their IDE (VS Code, Visual Studio, JetBrains, etc.)
+4. **Monitor Usage**: Use this analyzer to track adoption and ensure you're getting value from your investment
+
+**Important:** If your analyzer shows zero or very low token usage, premium features may not be enabled organization-wide. This represents a critical opportunity to unlock significant productivity gains your team is already paying for.
+
 ## 🚀 Quick Start
 
 1. **Export your usage report** from GitHub's billing dashboard
@@ -51,47 +135,78 @@ This tool transforms raw GitHub Copilot Premium usage data into actionable insig
 
 ## 🧮 How Calculations Work
 
-### Token-to-Time Conversion
+### Core Assumption
 
-GitHub Copilot Premium allocates a monthly quota measured in **tokens** (units of AI usage). Each seat receives 300 tokens per month.
+**1 Premium Request = 15 Minutes of Developer Time**
+
+GitHub Copilot Premium allocates a monthly quota measured in **premium requests** (units of AI usage). Each seat receives 300 premium requests per month.
+
+**The Calculation:**
+```
+300 premium requests × 15 minutes per request = 4,500 minutes
+4,500 minutes ÷ 60 = 75 hours of potential AI-assisted development time per developer
+```
+
+This assumption is based on the value that AI pair programming features (like extended conversations with Claude or GPT-4) provide in accelerating development work, code reviews, debugging, and architectural decisions. Each premium request represents an interaction with Copilot Chat where a developer asks a question, requests code generation, or seeks assistance - and we estimate each of these interactions saves approximately 15 minutes compared to solving the problem manually.
+
+### Why Enable These Pre-Paid Features?
+
+Organizations purchase Copilot Premium licenses as a **pre-paid investment** in developer productivity - paying upfront for 300 premium requests per developer per month. However, **these requests only deliver value when they're actually used**. 
+
+Enabling premium features is critical because:
+
+- **You've Already Paid For It**: Premium requests are included in your license cost whether used or not. Failing to enable them means paying for advanced AI capabilities while receiving only basic autocomplete functionality.
+
+- **Unused Quota Is Lost**: Unlike software licenses that can be "saved," premium requests reset monthly. Every unused request represents wasted investment - if a team of 10 developers leaves their quota untapped, that's 3,000 hours (125 days) of potential productivity gains disappearing each month.
+
+- **Competitive Advantage**: Teams that leverage AI pair programming ship features faster, onboard developers more quickly, and tackle technical debt more efficiently. Organizations that leave premium features disabled are essentially choosing to compete with one hand tied behind their back.
+
+- **Measurable ROI**: With premium features enabled and this analyzer tracking usage, leadership can demonstrate concrete ROI through metrics like time saved, adoption rates, and productivity impact - turning an abstract "AI investment" into quantifiable business value.
+
+**Bottom line**: If your organization is paying for Copilot Premium but hasn't enabled premium features, you're funding innovation for competitors while your own teams work without the AI advantage you've already purchased.
+
+### Token-to-Time Conversion
 
 **Core Formula:**
 ```
-Total Available Minutes = Number of Seats × 300 tokens
+Total Available Minutes = Number of Seats × 300 tokens × 15 minutes per token
 Total Available Hours = Total Available Minutes ÷ 60
 ```
 
 **Example with 8 seats:**
 ```
-8 seats × 300 tokens = 2,400 minutes
-2,400 minutes ÷ 60 = 40 hours of AI developer capacity
+8 seats × 300 tokens × 15 minutes = 36,000 minutes
+36,000 minutes ÷ 60 = 600 hours of AI developer capacity
 ```
 
 ### Time Saved Calculation
 
-Time saved is calculated proportionally based on actual token usage:
+Time saved is calculated based on actual token usage:
 
 ```
-Time Saved Hours = (Tokens Used ÷ Total Available Tokens) × Total Available Hours
+Time Saved Minutes = Tokens Used × 15 minutes per token
+Time Saved Hours = Time Saved Minutes ÷ 60
 ```
 
 **Example:**
 ```
-851 tokens used ÷ 2,400 total tokens = 35.5%
-35.5% × 40 hours = 14.2 hours saved
+851 tokens used × 15 minutes = 12,765 minutes
+12,765 minutes ÷ 60 = 212.75 hours saved
 ```
 
 ### Unused Potential Calculation
 
 ```
 Unused Tokens = Total Available Tokens - Tokens Used
-Unused Hours = (Unused Tokens ÷ Total Available Tokens) × Total Available Hours
+Unused Minutes = Unused Tokens × 15 minutes per token
+Unused Hours = Unused Minutes ÷ 60
 ```
 
 **Example:**
 ```
 (2,400 - 851) = 1,549 unused tokens
-(1,549 ÷ 2,400) × 40 hours = 25.8 hours unused
+1,549 tokens × 15 minutes = 23,235 minutes
+23,235 minutes ÷ 60 = 387.25 hours unused
 ```
 
 **Validation:** Time Saved + Unused Potential = Total Opportunity ✓
