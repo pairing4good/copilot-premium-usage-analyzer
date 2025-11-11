@@ -119,6 +119,7 @@ Organization administrators should:
 3. **Upload and analyze**
    - Upload your CSV file (if available)
    - Enter your total number of Copilot seat licenses
+   - **Enter your average developer hourly rate** (defaults to $100/hr - adjust to match your organization's actual cost per developer hour including salary, benefits, and overhead)
    - If you don't have a CSV file, check "No premium request analytics CSV available" to see your total capacity potential
    - Click "Analyze Report"
 
@@ -252,16 +253,21 @@ Unused Capacity (Hours) = Unused Capacity (Minutes) ÷ 60
 
 ### Dollar Value Calculation
 
-All dollar values use a standard **$100/hour developer rate**:
+All dollar values are calculated using **your specified hourly developer rate** (defaults to $100/hour if not customized):
 
 ```
-Dollar Value = Hours × $100/hour
+Dollar Value = Hours × Hourly Rate
 ```
 
-**Example:**
-- Total Opportunity: 40 hrs × $100 = $4,000
-- Time Saved: 14.2 hrs × $100 = $1,420
-- Unused Potential: 25.8 hrs × $100 = $2,580
+**Example with default $100/hour rate:**
+- Total Opportunity: 600 hrs × $100 = $60,000
+- AI Capacity Used: 213 hrs × $100 = $21,300
+- Unused Potential: 387 hrs × $100 = $38,700
+
+**Example with custom $120/hour rate:**
+- Total Opportunity: 600 hrs × $120 = $72,000
+- AI Capacity Used: 213 hrs × $120 = $25,560
+- Unused Potential: 387 hrs × $120 = $46,440
 
 ### Adoption Rate
 
@@ -311,12 +317,19 @@ date,username,product,sku,model,quantity,unit_type,applied_cost_per_quantity,gro
 
 If you run a report mid-month, the "Unused Potential" represents tokens that are still available. The calculation remains valid - it shows what portion of the month's capacity has been used vs. what remains.
 
-### Developer Rate Assumption
+### Developer Rate Customization
 
-The tool uses a fixed **$100/hour** rate for all calculations. This is a conservative industry average for software developer costs (salary + benefits + overhead). You can mentally adjust by your actual rates:
+The tool allows you to **customize the hourly developer rate** to match your organization's actual costs. The default is **$100/hour**, which represents a conservative industry average for fully-loaded software developer costs (salary + benefits + overhead).
 
-- If your rate is $120/hr: multiply dollar values by 1.2
-- If your rate is $80/hr: multiply dollar values by 0.8
+**To set your organization's rate:**
+- Enter your actual average hourly cost in the "Average Developer Hourly Rate" field on the upload form
+- This rate should include:
+  - Base salary (annualized and divided by working hours)
+  - Benefits (health insurance, retirement, etc.)
+  - Overhead (office space, equipment, software licenses, etc.)
+  - Typical fully-loaded rates range from $75-150/hour depending on location and seniority
+
+**All dollar values in the report** (Total Opportunity, AI Capacity Used, Unused Potential, ROI calculations) will automatically use your specified rate, providing accurate financial metrics specific to your organization.
 
 ### Accuracy Limitations
 
@@ -452,8 +465,8 @@ A:
 **Q: How often should I run this analysis?**  
 A: Monthly is recommended. More frequent analysis (weekly) can help during initial rollout or adoption campaigns.
 
-**Q: Can I customize the $100/hour rate?**  
-A: Currently the rate is hardcoded. You can manually adjust the dollar values in your analysis by the appropriate multiplier.
+**Q: Can I customize the hourly developer rate?**  
+A: Yes! Enter your organization's actual average developer hourly rate in the "Average Developer Hourly Rate" field on the upload form. This should include salary, benefits, and overhead. The default is $100/hour, but you should adjust this to match your organization's actual costs for accurate ROI calculations.
 
 **Q: What if my CSV has a different format?**  
 A: The tool requires GitHub's standard export format. If you have custom data, you'll need to map it to the expected column structure.

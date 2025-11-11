@@ -56,7 +56,7 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
             margin-bottom: 20px;
             display: grid;
-            grid-template-columns: 1fr 220px 180px;
+            grid-template-columns: 2fr 1fr 1fr 180px;
             gap: 20px;
             align-items: end;
         }
@@ -696,6 +696,11 @@
                 <input type="number" id="seatLicenses" min="1" placeholder="e.g., 8" value="8">
             </div>
 
+            <div class="input-group">
+                <label for="hourlyRate">Average Developer Hourly Rate ($)</label>
+                <input type="number" id="hourlyRate" min="1" placeholder="e.g., 100" value="100">
+            </div>
+
             <button class="btn" id="analyzeBtn" disabled>Analyze Report</button>
 
             <div class="checkbox-group">
@@ -792,9 +797,11 @@
     <script>
         let csvData = null;
         let seatCount = 0;
+        let hourlyRate = 100;
         
         const fileInput = document.getElementById('csvFile');
         const seatInput = document.getElementById('seatLicenses');
+        const hourlyRateInput = document.getElementById('hourlyRate');
         const analyzeBtn = document.getElementById('analyzeBtn');
         const noCsvCheckbox = document.getElementById('noCsvCheckbox');
         const dashboard = document.getElementById('dashboard');
@@ -819,9 +826,11 @@
 
         fileInput.addEventListener('change', checkInputs);
         seatInput.addEventListener('input', checkInputs);
+        hourlyRateInput.addEventListener('input', checkInputs);
 
         analyzeBtn.addEventListener('click', () => {
             seatCount = parseInt(seatInput.value);
+            hourlyRate = parseFloat(hourlyRateInput.value) || 100;
             
             if (noCsvCheckbox.checked) {
                 // No CSV file - analyze with zero usage
@@ -1219,11 +1228,10 @@
             const unusedRequests = totalAvailableRequests - usedRequests;
             const hoursLost = (unusedRequests / totalAvailableRequests) * totalHoursAvailable;
             
-            // Calculate dollar values at $100/hour
-            const developerHourlyRate = 100;
-            const totalValue = totalHoursAvailable * developerHourlyRate;
-            const usedValue = hoursUsed * developerHourlyRate;
-            const lostValue = hoursLost * developerHourlyRate;
+            // Calculate dollar values using the user-specified hourly rate
+            const totalValue = totalHoursAvailable * hourlyRate;
+            const usedValue = hoursUsed * hourlyRate;
+            const lostValue = hoursLost * hourlyRate;
             
             container.innerHTML = `
                 <div class="productivity-grid-three">
@@ -1264,7 +1272,7 @@
 
                 insights.push({
                     title: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg> Potential ROI',
-                    text: `At an average developer rate of $100/hr, your ${metrics.totalSeats} Premium seats represent approximately $${((metrics.totalSeats * 300 * 15 / 60) * 100).toLocaleString()} in monthly productivity capacity. This is the value you've pre-paid for that could be unlocked through adoption.`
+                    text: `At an average developer rate of $${hourlyRate}/hr, your ${metrics.totalSeats} Premium seats represent approximately $${((metrics.totalSeats * 300 * 15 / 60) * hourlyRate).toLocaleString()} in monthly productivity capacity. This is the value you've pre-paid for that could be unlocked through adoption.`
                 });
 
                 insights.push({
@@ -1336,14 +1344,14 @@
                 // ROI perspective
                 const estimatedTimeSaved = metrics.totalRequests * 5; // Assume 5 minutes saved per token usage
                 const savedHours = (estimatedTimeSaved / 60).toFixed(0);
-                const dollarValue = ((estimatedTimeSaved / 60) * 100).toFixed(0);
+                const dollarValue = ((estimatedTimeSaved / 60) * hourlyRate).toFixed(0);
                 
                 let roiText;
                 if (metrics.totalCost > 0) {
-                    const returnMultiple = (((estimatedTimeSaved / 60) * 100) / metrics.totalCost).toFixed(1);
-                    roiText = `With ${metrics.totalRequests.toLocaleString()} AI tokens used, your team potentially saved ~${savedHours} hours of development time this month. At an average developer rate of $100/hr, that's approximately $${dollarValue} in productivity value generated from a $${metrics.totalCost.toFixed(2)} usage cost (${returnMultiple}x return on incremental usage costs).`;
+                    const returnMultiple = (((estimatedTimeSaved / 60) * hourlyRate) / metrics.totalCost).toFixed(1);
+                    roiText = `With ${metrics.totalRequests.toLocaleString()} AI tokens used, your team potentially saved ~${savedHours} hours of development time this month. At an average developer rate of $${hourlyRate}/hr, that's approximately $${dollarValue} in productivity value generated from a $${metrics.totalCost.toFixed(2)} usage cost (${returnMultiple}x return on incremental usage costs).`;
                 } else {
-                    roiText = `With ${metrics.totalRequests.toLocaleString()} AI tokens used, your team potentially saved ~${savedHours} hours of development time this month. At an average developer rate of $100/hr, that's approximately $${dollarValue} in productivity value generated. Premium tokens are included in your license cost, making this additional value with no incremental usage fees.`;
+                    roiText = `With ${metrics.totalRequests.toLocaleString()} AI tokens used, your team potentially saved ~${savedHours} hours of development time this month. At an average developer rate of $${hourlyRate}/hr, that's approximately $${dollarValue} in productivity value generated. Premium tokens are included in your license cost, making this additional value with no incremental usage fees.`;
                 }
                 
                 insights.push({
@@ -1435,7 +1443,7 @@
             const totalHoursAvailable = totalMinutesAvailable / 60;
             
             const methodologyNote = document.getElementById('methodologyNote');
-            methodologyNote.innerHTML = `<strong>Methodology:</strong> Based on ${totalSeats} seats × ${monthlyQuotaPerSeat} premium requests × 15 minutes per request = ${totalMinutesAvailable.toLocaleString()} total minutes (${totalHoursAvailable.toFixed(0)} hours) at $100/hour developer rate.`;
+            methodologyNote.innerHTML = `<strong>Methodology:</strong> Based on ${totalSeats} seats × ${monthlyQuotaPerSeat} premium requests × 15 minutes per request = ${totalMinutesAvailable.toLocaleString()} total minutes (${totalHoursAvailable.toFixed(0)} hours) at $${hourlyRate}/hour developer rate.`;
         }
     </script>
 </body>
