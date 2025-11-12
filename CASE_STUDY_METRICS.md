@@ -40,11 +40,14 @@ The **15-minute metric is conservative** (representing 65-94% of actual value) a
   - Claude (Day 1): Contributed to initial prototype
   - GitHub Copilot Agent (Day 1-2): Refinement, testing, CI/CD
 - **Note:** 50 total prompts/interactions consumed 105 premium requests
+- **Usage Type:** Interactive Copilot Chat sessions (not autonomous agent features like Code Review or Coding Agent)
 
 ### Developer Time Investment
 - **Active Prompting Time:** 45-55 minutes (~1 minute per prompt)
 - **Review/Validation Time:** Minimal (asynchronous collaboration)
 - **Total Developer Attention:** ~1 hour
+
+**Context:** This case study measures productivity from interactive AI chat sessions. Copilot also offers autonomous agent features (Code Review for automated PR analysis, Coding Agent for background task completion) that would provide additional productivity multipliers beyond the ~34x demonstrated here.
 
 ### Work Output Delivered
 - **Using 15-minute metric:** 105 requests × 15 min = **1,575 minutes = 26.25 hours**
@@ -274,6 +277,12 @@ The **15-minute per premium request metric is validated and conservative** based
 - ✅ Metric is defensible and provides safety margin for organizational ROI discussions
 
 **Recommendation:** Organizations can confidently use the **15-minute metric** for calculating GitHub Copilot Premium ROI, knowing it represents **conservative, evidence-based value** (65-94% of actual measured value). For more accurate projections, use the **16-23 minute per request** metric derived from this empirical case study.
+
+**Beyond Interactive Chat:** This case study measures productivity from interactive Copilot Chat sessions. GitHub Copilot Premium also includes autonomous agent features:
+- **Code Review**: Automated pull request analysis with AI-powered bug detection, security scanning, and quality suggestions
+- **Coding Agent**: Autonomous background task completion (bug fixes, features, tests, refactoring)
+
+These agent features provide additional productivity multipliers by automating code quality processes and enabling true parallel development capacity (AI works on routine tasks while developers focus on complex problems). Organizations using these features can expect compounded ROI beyond the ~34x multiplier demonstrated in this interactive chat case study.
 
 ---
 

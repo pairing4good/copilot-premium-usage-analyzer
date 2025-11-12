@@ -2,6 +2,7 @@ const { test, expect } = require('@playwright/test');
 const path = require('path');
 
 const SAMPLE_CSV_PATH = path.join(__dirname, 'fixtures/sample_premiumRequestUsageReport.csv');
+const PARTIAL_MONTH_CSV_PATH = path.join(__dirname, 'fixtures/sample_partialMonth.csv');
 
 test.describe('Copilot Premium Usage Analyzer - Golden Master Test', () => {
   test('should render dashboard correctly with sample data', async ({ page }) => {
@@ -224,5 +225,57 @@ test.describe('Copilot Premium Usage Analyzer - Golden Master Test', () => {
     const metricsGrid = page.locator('#metricsGrid');
     await expect(metricsGrid).toContainText('Token Utilization');
     await expect(metricsGrid).toContainText('%');
+  });
+
+  test('should detect and display Code Review and Coding Agent usage', async ({ page }) => {
+    await page.goto('/');
+    
+    // Use the partial month CSV that includes Code Review and Coding Agent
+    const fileInput = page.locator('#csvFile');
+    await fileInput.setInputFiles(PARTIAL_MONTH_CSV_PATH);
+    await page.locator('#seatLicenses').fill('5');
+    await page.locator('#analyzeBtn').click();
+    
+    await expect(page.locator('#dashboard')).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('#insightsContainer', { state: 'visible' });
+    await page.waitForTimeout(2000);
+    
+    // Verify agent features are detected and shown as separate insights
+    const insightsContainer = page.locator('#insightsContainer');
+    await expect(insightsContainer).toContainText('Code Review Agent Usage');
+    await expect(insightsContainer).toContainText('Coding Agent Deployment');
+    
+    // Verify the insights explain the benefits
+    await expect(insightsContainer).toContainText('automated code review');
+    await expect(insightsContainer).toContainText('security vulnerabilities');
+    await expect(insightsContainer).toContainText('autonomous agents');
+    await expect(insightsContainer).toContainText('expanding team capacity');
+    
+    // Take snapshot of agent features detection
+    await expect(insightsContainer).toHaveScreenshot('agent-features-detected.png', {
+      animations: 'disabled',
+    });
+  });
+
+  test('should show Code Review detection in standard CSV', async ({ page }) => {
+    await page.goto('/');
+    
+    // Use the standard CSV which includes Code Review (16 reviews)
+    const fileInput = page.locator('#csvFile');
+    await fileInput.setInputFiles(SAMPLE_CSV_PATH);
+    await page.locator('#seatLicenses').fill('8');
+    await page.locator('#analyzeBtn').click();
+    
+    await expect(page.locator('#dashboard')).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForSelector('#insightsContainer', { state: 'visible' });
+    await page.waitForTimeout(2000);
+    
+    // Verify Code Review detection
+    const insightsContainer = page.locator('#insightsContainer');
+    await expect(insightsContainer).toContainText('Code Review Agent Usage');
+    await expect(insightsContainer).toContainText('16 automated code review');
+    await expect(insightsContainer).toContainText('security vulnerabilities');
   });
 });

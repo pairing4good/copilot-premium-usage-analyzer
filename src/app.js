@@ -152,6 +152,9 @@ function calculateMetrics(data) {
 
     // Model statistics
     const modelStats = {};
+    let codeReviewRequests = 0;
+    let codingAgentRequests = 0;
+    
     data.forEach(row => {
         const model = row.model;
         if (!modelStats[model]) {
@@ -159,6 +162,14 @@ function calculateMetrics(data) {
         }
         modelStats[model].requests += row.quantity || 0;
         modelStats[model].cost += row.net_amount || 0;
+        
+        // Track special agent features
+        if (model === 'Code Review model') {
+            codeReviewRequests += row.quantity || 0;
+        }
+        if (model === 'Coding Agent model') {
+            codingAgentRequests += row.quantity || 0;
+        }
     });
 
     // Daily statistics
@@ -191,7 +202,9 @@ function calculateMetrics(data) {
         avgCostPerActiveUser: activeUsers > 0 ? totalCost / activeUsers : 0, // Average for active users only
         quotaUsagePercent,
         totalSeats: seatCount,
-        unusedSeats: seatCount - activeUsers
+        unusedSeats: seatCount - activeUsers,
+        codeReviewRequests,
+        codingAgentRequests
     };
 }
 
@@ -585,6 +598,38 @@ function renderInsights(metrics, isCapacityOnly = false) {
             insights.push({
                 title: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg> Maximize Token Usage',
                 text: `Your team has ${unusedHours} hours of unused AI tokens out of ${totalHours} hours available this month. These tokens reset monthly and cannot be carried forward. Encourage active users to leverage AI capabilities more frequently, and ensure inactive team members receive training and onboarding to utilize their allocated tokens before they expire.`
+            });
+        }
+        
+        // Agent features insights
+        // Code Review insight - enhances quality and thoroughness
+        if (metrics.codeReviewRequests > 0) {
+            insights.push({
+                title: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><polyline points="20 6 9 17 4 12"></polyline></svg> Code Review Agent Usage',
+                text: `Your team used ${metrics.codeReviewRequests} automated code review${metrics.codeReviewRequests > 1 ? 's' : ''} this period. This AI-powered PR analysis helps catch security vulnerabilities, bugs, and standards violations that human reviewers might miss, allowing engineers to focus on complex logic and architecture.`
+            });
+        }
+
+        // Coding Agent insight - parallel development capacity
+        if (metrics.codingAgentRequests > 0) {
+            insights.push({
+                title: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><polyline points="20 6 9 17 4 12"></polyline></svg> Coding Agent Deployment',
+                text: `Excellent! Your team deployed ${metrics.codingAgentRequests} coding agent session${metrics.codingAgentRequests > 1 ? 's' : ''} this period. These autonomous agents handle routine tasks (bug fixes, tests, documentation) in parallel while your engineers focus on complex features—effectively expanding team capacity.`
+            });
+        }
+
+        // Recommendations when features are not detected
+        if (metrics.codeReviewRequests === 0) {
+            insights.push({
+                title: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><path d="M12 2v20M2 12h20"></path></svg> Code Review Agent Available',
+                text: `Enable automated code reviews to improve quality assurance. AI-powered PR analysis catches security issues, bugs, and standards violations, complementing human reviewers. Uses 1 premium request per review from your existing quota.`
+            });
+        }
+        
+        if (metrics.codingAgentRequests === 0) {
+            insights.push({
+                title: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><path d="M12 2v20M2 12h20"></path></svg> Coding Agent Available',
+                text: `Deploy autonomous coding agents to expand development capacity. Assign routine tasks (bug fixes, tests, documentation) to AI agents that work in parallel with your team, freeing engineers for complex work. Uses 1 premium request per session from your existing quota.`
             });
         }
     }

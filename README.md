@@ -59,6 +59,30 @@ Premium tokens power **GitHub Copilot Chat** - an interactive AI pair programmin
 - Perform AI-assisted code reviews
 - Explain pull request changes
 
+**🤖 Advanced Agent Features** *(Premium)*
+
+Beyond interactive chat, Copilot Premium includes autonomous agent features that work in the background:
+
+**Copilot Code Review** - Automated pull request analysis
+- Automatically reviews pull requests for bugs, security issues, and code quality
+- Provides actionable suggestions with one-click fixes
+- Uses CodeQL for deterministic security detections
+- Integrates with your team's coding standards via custom instructions
+- **Appears in usage reports as:** "Code Review model"
+- **Uses:** 1 premium request per PR review
+
+**Copilot Coding Agent** - Autonomous task completion
+- Assign GitHub issues or tasks directly to @copilot
+- Works independently in ephemeral GitHub Actions environments
+- Completes bug fixes, features, tests, refactoring, and documentation
+- Opens pull requests with proposed changes for your review
+- Iterate via @copilot mentions in PR comments (free within same session)
+- Enables parallel development - developers work on complex tasks while Copilot handles routine work
+- **Appears in usage reports as:** "Coding Agent model"
+- **Uses:** 1 premium request per session (iterations within session are free)
+
+These agent features provide significant productivity multipliers by automating code quality improvements and enabling parallel development capacity.
+
 ### Why Teams Should Use Premium Tokens
 
 **Without using premium tokens**, developers are limited to basic autocomplete - useful, but only scratching the surface of AI-assisted development.
@@ -176,10 +200,22 @@ This "capacity-only" view is valuable for:
 ![Detailed Report](screenshots/003-detail.png)
 
 - **Key Insights & Recommendations** - AI-generated analysis of adoption patterns, usage concentration, and optimization opportunities
-- **Model Distribution** - Which AI models (Claude, GPT, etc.) your team prefers
+  - Detects advanced agent feature usage (Code Review & Coding Agent)
+  - Provides specific recommendations based on your team's usage patterns
+  - Highlights opportunities to leverage autonomous AI capabilities
+- **Model Distribution** - Which AI models (Claude, GPT, etc.) your team prefers, including agent features
 - **User Activity** - Top 5 power users by token consumption
 - **Daily Usage Trends** - Usage patterns over time
 - **User Details Table** - Complete breakdown by developer
+
+**Agent Feature Detection:**
+
+When your usage report includes "Code Review model" or "Coding Agent model" entries, the analyzer will:
+- Highlight these advanced features in the Key Insights section
+- Quantify how many automated reviews or agent sessions were completed
+- Explain the productivity benefits of these autonomous capabilities
+
+If no agent features are detected, the analyzer will recommend enabling them with explanations of their ROI potential.
 
 ## 🧮 How Calculations Work
 
@@ -435,9 +471,9 @@ Safe to use with sensitive organizational data.
 
 MIT License - See LICENSE file for details
 
-## � Testing
+## 🧪 Testing & Code Quality
 
-This project uses [Playwright](https://playwright.dev/) for automated golden master (snapshot) testing to ensure visual and functional consistency.
+This project uses [Playwright](https://playwright.dev/) for automated golden master (snapshot) testing and [ESLint](https://eslint.org/) for code quality enforcement.
 
 ### Running Tests
 
@@ -455,6 +491,16 @@ npm run test:update
 npm run test:ui
 ```
 
+### Code Quality
+
+```bash
+# Run linter to check code quality
+npm run lint
+
+# Auto-fix linting issues
+npm run lint:fix
+```
+
 ### Test Coverage
 
 The test suite includes:
@@ -462,8 +508,16 @@ The test suite includes:
 - **Validation error scenarios** (e.g., insufficient seat count)
 - **Capacity-only mode** testing (no CSV upload)
 - **Full dashboard rendering** with sample data
+- **Agent feature detection** tests (Code Review & Coding Agent)
 
-Tests automatically run on every push and pull request via GitHub Actions CI/CD.
+### CI/CD Pipeline
+
+The project uses GitHub Actions to automatically:
+1. Run ESLint on all JavaScript files
+2. Execute all Playwright tests
+3. Upload test results and snapshots
+
+All checks run on every push and pull request to ensure code quality and functionality.
 
 ## �🤝 Contributing
 
