@@ -425,6 +425,10 @@ Safe to use with sensitive organizational data.
 - Smooth animations and transitions
 - No backend required
 
+**Built with AI:**
+- This tool was developed using an AI agent (GitHub Copilot)
+- Demonstrates the power of AI-assisted development for creating production-ready tools
+
 ## 📄 License
 
 MIT License - See LICENSE file for details
