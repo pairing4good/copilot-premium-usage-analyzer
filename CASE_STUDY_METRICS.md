@@ -18,7 +18,7 @@ The **15-minute metric is conservative** (representing 65-94% of actual value) a
 **Type:** Production web application with comprehensive testing and CI/CD  
 **Timeline:** 2 days  
 **Developer Profile:** Mid-level developer familiar with web technologies  
-**Subscription Used:** GitHub Copilot Business (300 premium requests/month per user as of November 2025) 
+**Subscription Used:** GitHub Copilot Business (300 premium requests/month per user - [see subscription comparison](#github-copilot-subscription-comparison-as-of-november-2025)) 
 
 ### Deliverables
 - ✅ ~800 lines of production code (HTML, CSS, JavaScript)
