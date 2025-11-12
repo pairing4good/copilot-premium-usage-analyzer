@@ -200,6 +200,8 @@ This assumption is based on the value that AI pair programming features (like ex
 > **📊 CAPACITY CALCULATION**  
 > **300 premium requests × 15 minutes = 75 hours of AI capacity per developer per month**  
 > This is virtual developer capacity added to your team. A team of 10 = **750 hours/month of AI-assisted development capacity** included in your Premium licenses.
+>
+> **📖 See Validation:** The [CASE_STUDY_METRICS.md](CASE_STUDY_METRICS.md) document validates this 15-minute metric through real-world development of this tool, showing it's actually conservative (representing 65-94% of actual value delivered).
 
 ### Why Enable These Pre-Paid Features?
 
