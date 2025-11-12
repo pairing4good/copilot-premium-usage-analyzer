@@ -433,7 +433,37 @@ Safe to use with sensitive organizational data.
 
 MIT License - See LICENSE file for details
 
-## 🤝 Contributing
+## � Testing
+
+This project uses [Playwright](https://playwright.dev/) for automated golden master (snapshot) testing to ensure visual and functional consistency.
+
+### Running Tests
+
+```bash
+# Run all tests
+npm test
+
+# Run tests in headed mode (see browser)
+npm run test:headed
+
+# Update snapshots after intentional changes
+npm run test:update
+
+# Open test UI
+npm run test:ui
+```
+
+### Test Coverage
+
+The test suite includes:
+- **Golden master tests** with visual regression testing
+- **Validation error scenarios** (e.g., insufficient seat count)
+- **Capacity-only mode** testing (no CSV upload)
+- **Full dashboard rendering** with sample data
+
+Tests automatically run on every push and pull request via GitHub Actions CI/CD.
+
+## �🤝 Contributing
 
 This is an open-source tool for the developer community. Contributions welcome:
 - Bug reports

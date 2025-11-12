@@ -1,0 +1,29 @@
+{
+  "name": "copilot-premium-usage-analyzer",
+  "version": "1.0.0",
+  "description": "A comprehensive analytics tool for engineering leaders to measure AI developer capacity utilization and ROI from GitHub Copilot Premium features.",
+  "main": "index.js",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:update": "playwright test --update-snapshots",
+    "test:ui": "playwright test --ui"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pairing4good/copilot-premium-usage-analyzer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/pairing4good/copilot-premium-usage-analyzer/issues"
+  },
+  "homepage": "https://github.com/pairing4good/copilot-premium-usage-analyzer#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "http-server": "^14.1.1",
+    "playwright": "^1.56.1"
+  }
+}
