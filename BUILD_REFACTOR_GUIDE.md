@@ -275,10 +275,10 @@ Tests navigate to the application, inject test data, execute functions in the br
 Tests verify CSS loads correctly, then check computed styles in the browser's rendering engine to ensure styles apply as expected across different viewport sizes.
 
 **Test Results:**
-- 18 total tests (3 acceptance, 15 unit)
+- 35 total tests (9 acceptance, 26 unit)
 - All tests passing
 - Parallel execution enabled with multiple workers locally
-- Fast execution times (several seconds)
+- Fast execution times (~9 seconds)
 
 **Key Learning:** Unit tests should test individual functions in isolation when possible. However, for a single-page app with tightly coupled UI and logic, browser-based unit tests are acceptable and provide value.
 
@@ -362,8 +362,8 @@ Established clear hierarchy:
 
 ### Golden Master Acceptance Tests (Playwright)
 - **Purpose:** Ensure the entire user workflow works end-to-end
-- **Coverage:** Full scenarios from CSV upload to dashboard display
-- **Value:** Catches integration issues, visual regressions
+- **Coverage:** Full scenarios including CSV upload, capacity-only mode, various seat configurations (3-10 seats), multiple hourly rates ($75-$150), validation edge cases
+- **Value:** Catches integration issues, visual regressions, calculation accuracy across different inputs
 - **Frequency:** Run on every commit via CI/CD
 
 ### Unit Tests (Currently Playwright, Could Be Jest/Vitest)
@@ -381,7 +381,7 @@ Established clear hierarchy:
 - **Local Development:** 5 workers (fast feedback)
 - **CI/CD:** 1 worker (stability over speed)
 - **Safety:** Each test gets isolated browser context
-- **Result:** 18 tests in ~7 seconds
+- **Result:** 35 tests in ~9 seconds
 
 ---
 
@@ -400,7 +400,7 @@ The key was not trying to do everything at once, but building iteratively, testi
 
 **Total Development Time:** ~2 days  
 **Lines of Code:** ~800 (HTML/JS/CSS)  
-**Test Coverage:** 18 tests across acceptance and unit levels  
+**Test Coverage:** 35 tests across acceptance and unit levels  
 **Build Status:** ✅ All tests passing  
 **Deployment:** Live on GitHub Pages  
 

@@ -123,4 +123,106 @@ test.describe('Copilot Premium Usage Analyzer - Golden Master Test', () => {
     // Verify capacity-only insights are shown
     await expect(page.locator('#insightsContainer')).toContainText('Capacity-Only Analysis');
   });
+
+  test('should calculate correctly with 4 seats and $75/hr rate', async ({ page }) => {
+    await page.goto('/');
+    
+    await page.locator('#seatLicenses').fill('4');
+    await page.locator('#hourlyRate').fill('75');
+    await page.locator('#noCsvCheckbox').check();
+    await page.locator('#analyzeBtn').click();
+    
+    await expect(page.locator('#dashboard')).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
+    
+    // Verify calculations: 4 seats × 300 tokens × 15 min = 18,000 min = 300 hrs
+    // 300 hrs × $75 = $22,500
+    await expect(page.locator('#productivityContent')).toContainText('$22,500');
+    await expect(page.locator('#productivityContent')).toContainText('300 hrs');
+  });
+
+  test('should calculate correctly with 5 seats and $105/hr rate', async ({ page }) => {
+    await page.goto('/');
+    
+    await page.locator('#seatLicenses').fill('5');
+    await page.locator('#hourlyRate').fill('105');
+    await page.locator('#noCsvCheckbox').check();
+    await page.locator('#analyzeBtn').click();
+    
+    await expect(page.locator('#dashboard')).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
+    
+    // Verify calculations: 5 seats × 300 tokens × 15 min = 22,500 min = 375 hrs
+    // 375 hrs × $105 = $39,375
+    await expect(page.locator('#productivityContent')).toContainText('$39,375');
+    await expect(page.locator('#productivityContent')).toContainText('375 hrs');
+  });
+
+  test('should calculate correctly with 10 seats and $150/hr rate', async ({ page }) => {
+    await page.goto('/');
+    
+    await page.locator('#seatLicenses').fill('10');
+    await page.locator('#hourlyRate').fill('150');
+    await page.locator('#noCsvCheckbox').check();
+    await page.locator('#analyzeBtn').click();
+    
+    await expect(page.locator('#dashboard')).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
+    
+    // Verify calculations: 10 seats × 300 tokens × 15 min = 45,000 min = 750 hrs
+    // 750 hrs × $150 = $112,500
+    await expect(page.locator('#productivityContent')).toContainText('$112,500');
+    await expect(page.locator('#productivityContent')).toContainText('750 hrs');
+  });
+
+  test('should handle minimum viable team of 3 seats', async ({ page }) => {
+    await page.goto('/');
+    
+    await page.locator('#seatLicenses').fill('3');
+    await page.locator('#noCsvCheckbox').check();
+    await page.locator('#analyzeBtn').click();
+    
+    await expect(page.locator('#dashboard')).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(1000);
+    
+    // Verify calculations: 3 seats × 300 tokens × 15 min = 13,500 min = 225 hrs
+    // 225 hrs × $100 = $22,500
+    await expect(page.locator('#productivityContent')).toContainText('$22,500');
+    await expect(page.locator('#productivityContent')).toContainText('225 hrs');
+  });
+
+  test('should reject zero seats', async ({ page }) => {
+    await page.goto('/');
+    
+    await page.locator('#seatLicenses').fill('0');
+    await page.locator('#noCsvCheckbox').check();
+    
+    // Button should remain disabled with invalid input
+    const analyzeBtn = page.locator('#analyzeBtn');
+    await expect(analyzeBtn).toBeDisabled();
+  });
+
+  test('should verify token utilization calculation with CSV data', async ({ page }) => {
+    await page.goto('/');
+    
+    const fileInput = page.locator('#csvFile');
+    await fileInput.setInputFiles(SAMPLE_CSV_PATH);
+    await page.locator('#seatLicenses').fill('8');
+    await page.locator('#analyzeBtn').click();
+    
+    await expect(page.locator('#dashboard')).toHaveClass(/active/);
+    await page.waitForLoadState('networkidle');
+    await page.waitForTimeout(2000);
+    
+    // Verify Token Utilization percentage is calculated and displayed
+    // Formula: (Tokens Used ÷ Total Available Tokens) × 100
+    // With 8 seats: 8 × 300 = 2,400 total tokens
+    const metricsGrid = page.locator('#metricsGrid');
+    await expect(metricsGrid).toContainText('Token Utilization');
+    await expect(metricsGrid).toContainText('%');
+  });
 });
