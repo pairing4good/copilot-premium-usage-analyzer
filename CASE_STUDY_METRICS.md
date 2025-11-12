@@ -18,7 +18,7 @@ The **15-minute metric is conservative** (representing 65-94% of actual value) a
 **Type:** Production web application with comprehensive testing and CI/CD  
 **Timeline:** 2 days  
 **Developer Profile:** Mid-level developer familiar with web technologies  
-**Subscription Used:** GitHub Copilot Business (300 premium requests/month per user - [see subscription comparison](#github-copilot-subscription-comparison-as-of-november-2025)) 
+**Subscription Used:** GitHub Copilot Business (300 premium requests/month per user - see [subscription comparison below](#subscription-comparison)) 
 
 ### Deliverables
 - ✅ ~800 lines of production code (HTML, CSS, JavaScript)
@@ -217,6 +217,8 @@ Given the 300 premium request monthly allocation on GitHub Copilot Pro, a develo
 - Delivered 28-40 hours of work in 2 days
 - Remaining 195 requests could deliver an additional 52-75 hours of work
 - **Total monthly capacity: 80-115 hours from 300 requests**
+
+<a id="subscription-comparison"></a>
 
 **GitHub Copilot Subscription Comparison (as of November 2025):**
 
