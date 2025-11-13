@@ -104,7 +104,7 @@ All capacity metrics translate to dollar values using your specified developer h
 ![Detailed Report](screenshots/003-detail.png)
 
 ### Additional Insights
-- **AI-generated recommendations** for improving adoption and utilization
+- **Key Insights & Recommendations** for improving adoption and utilization
 - **Model distribution** showing which AI models your team prefers
 - **Top users** leveraging premium features most effectively
 - **Daily usage trends** to identify patterns
