@@ -68,8 +68,6 @@ Beyond interactive chat, Copilot Premium includes autonomous agent features that
 - Provides actionable suggestions with one-click fixes
 - Uses CodeQL for deterministic security detections
 - Integrates with your team's coding standards via custom instructions
-- **Appears in usage reports as:** "Code Review model"
-- **Uses:** 1 premium request per PR review
 
 **Copilot Coding Agent** - Autonomous task completion
 - Assign GitHub issues or tasks directly to @copilot
@@ -78,8 +76,6 @@ Beyond interactive chat, Copilot Premium includes autonomous agent features that
 - Opens pull requests with proposed changes for your review
 - Iterate via @copilot mentions in PR comments (free within same session)
 - Enables parallel development - developers work on complex tasks while Copilot handles routine work
-- **Appears in usage reports as:** "Coding Agent model"
-- **Uses:** 1 premium request per session (iterations within session are free)
 
 These agent features provide significant productivity multipliers by automating code quality improvements and enabling parallel development capacity.
 
