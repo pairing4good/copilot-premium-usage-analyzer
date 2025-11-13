@@ -27,6 +27,9 @@ Measure the ROI of your GitHub Copilot Premium investment. This analytics tool h
 
 GitHub Copilot Premium is a **pre-paid capacity investment**. Each developer license includes **300 premium requests per month**—equivalent to **75 hours (~ 2 weeks) of AI-assisted development capacity**.
 
+> **💰 Executive Insight:**  
+> **Each developer license includes 300 premium requests per month—equivalent to 75 hours (~ 2 weeks) of AI-assisted development capacity.** Are you capturing this value, or is it expiring unused?
+
 ### What Are Premium Requests?
 
 Premium requests power **GitHub Copilot Chat** and autonomous agent features that go far beyond basic code completion:
@@ -61,6 +64,9 @@ Premium requests power **GitHub Copilot Chat** and autonomous agent features tha
 > **⚠️ ROI Reality Check**  
 > A team of 10 developers with unused quotas = **3,000 requests (750 hours) of pre-paid AI capacity lost every month.** This analyzer helps you identify if you're leaving this productivity on the table.
 
+> **🚨 Critical Finding:**  
+> **Premium features are disabled by default.** Even organizations paying for Premium licenses often leave these capabilities turned off—meaning developers get only basic autocomplete while advanced AI assistance sits unused.
+
 ### How to Enable Premium Features
 
 Organization administrators should:
@@ -85,6 +91,9 @@ Organization administrators should:
 
 > **Calculation:** 1 Premium Request = 15 minutes of AI-assisted development capacity  
 > **Example:** 10 seats × 300 requests × 15 minutes = **750 hours/month of AI capacity**
+
+> **📊 Capacity Thinking:**  
+> **A team of 10 developers has 750 hours/month of AI-assisted development capacity included in their Premium licenses.** This is virtual developer capacity—AI handling work that would otherwise require manual effort. What percentage is your team using?
 
 ### Financial Impact
 All capacity metrics translate to dollar values using your specified developer hourly rate, showing:
@@ -143,6 +152,9 @@ This represents virtual developer capacity added to your team—AI assistance ha
 
 > **Example:** A team of 10 developers = **750 hours/month of AI-assisted development capacity** included in your Premium licenses.
 
+> **⏰ Time-Sensitive Asset:**  
+> **Premium requests reset monthly. Unused capacity cannot be carried forward**—it expires at billing cycle end. Every month, your investment either delivers productivity gains or vanishes unused.
+
 ### Key Calculations
 
 **Adoption Rate:** (Active Users ÷ Total Seats) × 100  
@@ -165,6 +177,9 @@ The 15-minute metric is validated through real-world development case studies (s
 **Browser:** Chrome/Edge 90+, Firefox 88+, or Safari 14+
 
 ## ⚠️ Important to Know
+
+> **💡 Adoption Benchmark:**  
+> **Organizations with 60%+ adoption rates maximize their Premium investment**—while teams below 30% adoption often don't even know premium features are available. Where does your organization stand?
 
 **Premium requests reset monthly.** Unused capacity cannot be carried forward and is lost at billing cycle end. This tool highlights this opportunity cost.
 
