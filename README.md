@@ -93,7 +93,7 @@ Organization leaders should:
 > **Example:** 10 seats × 300 requests × 15 minutes = **750 hours/month of AI capacity**
 
 > **📊 Reframe Your Investment:**  
-> **You're not buying software—you're buying time.** At 75 hours per seat, a 10-person team gains nearly 5 full-time AI developers worth of capacity. Would you let actual developers sit idle? Measure utilization the same way.
+> **You're not buying software—you're buying time.** At 75 hours per seat, a 10-person team gains nearly 5 full-time AI developers worth of capacity. Would you let actual developers sit idle? Measure AI utilization the same way.
 
 ### Financial Impact
 All capacity metrics translate to dollar values using your specified developer hourly rate, showing:
