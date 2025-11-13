@@ -70,10 +70,10 @@ Premium requests power **GitHub Copilot Chat** and autonomous agent features tha
 ### How to Drive Adoption
 
 Organization leaders should:
-1. Verify premium features are enabled in GitHub organization settings
+1. Verify premium **features are enabled** in GitHub organization settings
 2. **Communicate availability** - developers need to know what they have access to
 3. **Provide training** - show teams how to use Chat, premium models, and agent features
-4. Use this analyzer to track adoption and identify teams needing support
+4. Use this analyzer to **track adoption** and identify teams needing support
 
 ## 📊 What You'll Measure
 
