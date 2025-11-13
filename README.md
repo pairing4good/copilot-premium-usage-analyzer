@@ -53,6 +53,9 @@ Premium requests power **GitHub Copilot Chat** and autonomous agent features tha
 
 ### The Critical Question: Are Your Developers Using Premium Features?
 
+> **⚠️ ROI Reality Check**  
+> A team of 10 developers with unused quotas = **3,000 requests (750 hours) of pre-paid AI capacity lost every month.** This analyzer helps you identify if you're leaving this productivity on the table.
+
 **Premium features are available with or can be added to your licenses—but that doesn't mean developers are using them.** Many teams have low utilization simply because developers don't know these capabilities exist or how to access them.
 
 **Common reasons for low utilization:**
@@ -60,9 +63,6 @@ Premium requests power **GitHub Copilot Chat** and autonomous agent features tha
 - 📚 No training on how to leverage advanced features effectively
 - 🔕 **Premium capabilities never communicated to the team**
 - 🔒 **In some cases, organizational policies restrict access**
-
-> **⚠️ ROI Reality Check**  
-> A team of 10 developers with unused quotas = **3,000 requests (750 hours) of pre-paid AI capacity lost every month.** This analyzer helps you identify if you're leaving this productivity on the table.
 
 > **🚨 Awareness is Everything:**  
 > **The most common cause of zero utilization isn't disabled features—it's developers who don't know they exist.** When was the last time your team was shown how to use Copilot Chat, access premium models, or assign issues to @copilot?
