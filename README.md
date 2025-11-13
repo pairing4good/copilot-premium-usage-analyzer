@@ -53,10 +53,10 @@ Premium requests power **GitHub Copilot Chat** and autonomous agent features tha
 
 ### The Critical Question: Are Your Developers Using Premium Features?
 
+**Premium features are available with or can be added to your licenses—but that doesn't mean developers are using them.** Many teams have low utilization simply because developers don't know these capabilities exist or how to access them.
+
 > **⚠️ ROI Reality Check**  
 > A 10-person team with unused quotas = **the equivalent of 5 extra AI-powered developers left idle each month.** This analyzer helps you see if that’s happening to you.
-
-**Premium features are available with or can be added to your licenses—but that doesn't mean developers are using them.** Many teams have low utilization simply because developers don't know these capabilities exist or how to access them.
 
 **Common reasons for low utilization:**
 - 🤷 Developers unaware that Chat and premium models are available
