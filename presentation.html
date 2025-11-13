@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Copilot Premium Usage Analyzer - Presentation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reset.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/theme/black.css">
+    <style>
+        .reveal h1, .reveal h2, .reveal h3 { text-transform: none; }
+        .reveal .slides { text-align: left; }
+        .reveal .center { text-align: center; }
+        .reveal ul { margin-left: 1em; }
+        .reveal strong { color: #42affa; }
+        .reveal .highlight { color: #ffa500; font-weight: bold; }
+        .reveal .success { color: #4caf50; }
+        .reveal .warning { color: #ff5722; }
+        .reveal .stat { font-size: 2em; font-weight: bold; color: #42affa; }
+        .reveal .small { font-size: 0.8em; }
+        .reveal .callout {
+            background: rgba(66, 175, 250, 0.1);
+            border-left: 4px solid #42affa;
+            padding: 1em;
+            margin: 1em 0;
+        }
+        .reveal .demo-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid #42affa;
+            padding: 1em;
+            border-radius: 8px;
+            margin: 0.5em 0;
+        }
+        .reveal section img {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            
+            <!-- Title Slide -->
+            <section class="center">
+                <h1>GitHub Copilot Premium<br>Usage Analyzer</h1>
+                <h3>Measure ROI & Drive AI Adoption</h3>
+                <p style="margin-top: 2em;">
+                    <a href="https://pairing4good.github.io/copilot-premium-usage-analyzer/" 
+                       style="color: #42affa;">pairing4good.github.io/copilot-premium-usage-analyzer</a>
+                </p>
+                <p class="small" style="margin-top: 2em; opacity: 0.7;">
+                    Built entirely with AI assistance
+                </p>
+            </section>
+
+            <!-- Problem Statement -->
+            <section>
+                <h2>The Problem</h2>
+                <div class="callout">
+                    <p class="highlight">Organizations are paying for GitHub Copilot Premium...</p>
+                    <p>...but don't know if teams are actually using it.</p>
+                </div>
+                <ul style="margin-top: 1em;">
+                    <li class="fragment">Each license = <strong>300 premium requests/month</strong></li>
+                    <li class="fragment">Equivalent to <strong>75 hours of AI capacity</strong></li>
+                    <li class="fragment">Unused quota <span class="warning">expires monthly</span></li>
+                    <li class="fragment">No built-in analytics to track utilization</li>
+                </ul>
+            </section>
+
+            <!-- The Solution -->
+            <section>
+                <h2>The Solution</h2>
+                <p>A <strong>browser-based analytics tool</strong> that transforms GitHub's usage reports into actionable insights</p>
+                <div class="fragment" style="margin-top: 1em;">
+                    <h3>Key Features:</h3>
+                    <ul>
+                        <li>🔒 <strong>100% client-side</strong> - no data leaves your browser</li>
+                        <li>📊 <strong>Executive dashboards</strong> with ROI metrics</li>
+                        <li>💰 <strong>Dollar value calculations</strong> based on your hourly rate</li>
+                        <li>📈 <strong>Adoption & utilization tracking</strong></li>
+                        <li>🎯 <strong>AI-generated recommendations</strong></li>
+                    </ul>
+                </div>
+            </section>
+            
+            <!-- Live Demo Slide -->
+            <section class="center">
+                <h2>🎬 Live Demo</h2>
+                <p style="margin-top: 2em;">
+                    <a href="https://pairing4good.github.io/copilot-premium-usage-analyzer/" 
+                       target="_blank"
+                       style="font-size: 1.5em; color: #42affa;">
+                        Open Tool →
+                    </a>
+                </p>
+                <div class="fragment" style="margin-top: 2em;">
+                    <p class="small">Demo Steps:</p>
+                    <ol class="small">
+                        <li>Upload sample CSV or use capacity-only mode</li>
+                        <li>Enter seat count & hourly rate</li>
+                        <li>Review executive dashboard</li>
+                        <li>Explore detailed insights</li>
+                    </ol>
+                </div>
+            </section>
+
+            <!-- How to Use This Tool -->
+            <section>
+                <h2>Using This Tool</h2>
+                <div class="fragment">
+                    <h3>1️⃣ Discovery & Assessment</h3>
+                    <ul class="small">
+                        <li>Export your Premium usage report from GitHub</li>
+                        <li>Run analysis to establish baseline metrics</li>
+                        <li>Identify <span class="warning">unused capacity</span> and <span class="success">power users</span></li>
+                    </ul>
+                </div>
+                <div class="fragment" style="margin-top: 0.5em;">
+                    <h3>2️⃣ Build the Business Case</h3>
+                    <ul class="small">
+                        <li>Show dollar value of <strong>wasted capacity</strong></li>
+                        <li>Calculate potential ROI from improved adoption</li>
+                        <li>Present executive-ready dashboards to leadership</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2>Using This Tool</h2>
+                <div>
+                    <h3>3️⃣ Design Interventions</h3>
+                    <ul class="small">
+                        <li>Target low-adoption teams with training</li>
+                        <li>Document and share power user workflows</li>
+                        <li>Verify premium features are properly enabled</li>
+                    </ul>
+                </div>
+                <div class="fragment" style="margin-top: 0.5em;">
+                    <h3>4️⃣ Track Progress</h3>
+                    <ul class="small">
+                        <li>Run monthly reports to measure improvement</li>
+                        <li>Demonstrate training ROI with before/after metrics</li>
+                        <li>Identify teams needing additional support</li>
+                    </ul>
+                </div>
+                <div class="callout fragment" style="margin-top: 1em;">
+                    <p class="small">💡 <strong>Privacy-first approach:</strong> Your data never leaves your browser</p>
+                </div>
+            </section>
+
+            <!-- Built with AI -->
+            <section>
+                <h2>How This Was Built</h2>
+                <p><strong>100% AI-assisted development</strong> using GitHub Copilot Agent</p>
+                <div class="fragment" style="margin-top: 1em;">
+                    <h3>Development Timeline</h3>
+                    <ul class="small">
+                        <li><strong>Day 1:</strong> Core functionality + initial testing</li>
+                        <li><strong>Day 2:</strong> Refactoring + comprehensive test suite + CI/CD</li>
+                        <li><strong>Total:</strong> ~1 hour of active developer time</li>
+                    </ul>
+                </div>
+                <div class="callout fragment" style="margin-top: 1em;">
+                    <p class="small"><strong>Deliverables:</strong> 800 lines of production code, 35 tests, GitHub Actions CI/CD, full documentation, live deployment</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>AI-Assisted Development Process</h2>
+                <div>
+                    <h3>Iterative Approach</h3>
+                    <ol class="small">
+                        <li class="fragment"><strong>Initial Prototype</strong> - Working HTML/CSS/JS dashboard</li>
+                        <li class="fragment"><strong>Add Testing</strong> - Playwright golden master tests</li>
+                        <li class="fragment"><strong>Implement CI/CD</strong> - GitHub Actions automation</li>
+                        <li class="fragment"><strong>Refactor</strong> - Extract CSS/JS, organize structure</li>
+                        <li class="fragment"><strong>Add Unit Tests</strong> - Comprehensive coverage</li>
+                        <li class="fragment"><strong>Documentation</strong> - README, guides, case studies</li>
+                    </ol>
+                </div>
+                <p class="fragment" style="margin-top: 1em; font-size: 0.9em;">
+                    <span class="highlight">Key Insight:</span> AI excels at iteration when given clear, incremental goals
+                </p>
+            </section>
+
+            <section>
+                <h2>AI Agent Interactions</h2>
+                <div>
+                    <p><strong>50 total prompts</strong> consumed <strong>105 premium requests</strong></p>
+                    <ul class="small" style="margin-top: 1em;">
+                        <li class="fragment">Average: ~1 minute per prompt</li>
+                        <li class="fragment">Developer mostly reviewed & validated</li>
+                        <li class="fragment">Agent handled implementation details</li>
+                    </ul>
+                </div>
+                <div class="callout fragment" style="margin-top: 1em;">
+                    <p class="small"><strong>Productivity Multiplier:</strong> ~34x</p>
+                    <p class="small">1 hour of attention → 28-40 hours of equivalent work</p>
+                </div>
+            </section>
+
+            <!-- Validating the 15-Minute Metric -->
+            <section>
+                <h2>Validating the 15-Minute Metric</h2>
+                <div>
+                    <p><strong>Claim:</strong> 1 Premium Request = 15 minutes of developer value</p>
+                    <div class="fragment" style="margin-top: 1em;">
+                        <h3>How We Validated It</h3>
+                        <p class="small">We analyzed <strong>building this very tool</strong> as a case study:</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Case Study: Building This Tool</h2>
+                <div class="demo-box">
+                    <h3 style="color: #42affa;">AI Usage</h3>
+                    <ul class="small">
+                        <li><strong>105 premium requests</strong> consumed</li>
+                        <li><strong>~1 hour</strong> of active developer time</li>
+                    </ul>
+                </div>
+                <div class="demo-box fragment">
+                    <h3 style="color: #42affa;">Work Delivered</h3>
+                    <ul class="small">
+                        <li>800 lines of production code</li>
+                        <li>35 comprehensive tests (acceptance + unit)</li>
+                        <li>CI/CD pipeline with GitHub Actions</li>
+                        <li>Professional documentation</li>
+                        <li>Live deployment on GitHub Pages</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2>Manual Development Estimate</h2>
+                <p class="small">A mid-level developer without AI would need:</p>
+                <div class="demo-box">
+                    <ul class="small">
+                        <li><strong>12-17 hours:</strong> Core application (HTML, CSV parsing, calculations, charts, CSS)</li>
+                        <li><strong>7-10 hours:</strong> Testing infrastructure (Playwright setup, 35 tests)</li>
+                        <li><strong>4-7 hours:</strong> CI/CD & documentation</li>
+                        <li><strong>5-6 hours:</strong> Refactoring & polish</li>
+                    </ul>
+                    <p style="margin-top: 1em;"><strong class="stat">28-40 hours total</strong></p>
+                </div>
+                <p class="fragment small" style="margin-top: 1em;">
+                    <span class="highlight">Realistic timeline:</span> 4-5 working days
+                </p>
+            </section>
+
+            <section>
+                <h2>The Validation Math</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1em; margin-top: 1em;">
+                    <div class="demo-box" style="font-size: 0.9em;">
+                        <p><strong>Using 15-min assumption:</strong></p>
+                        <p class="small">105 requests × 15 min</p>
+                        <p class="stat" style="font-size: 1.5em;">26.25 hrs</p>
+                    </div>
+                    <div class="demo-box fragment" style="font-size: 0.9em;">
+                        <p><strong>Actual manual estimate:</strong></p>
+                        <p class="small">&nbsp;</p>
+                        <p class="stat" style="font-size: 1.5em;">28-40 hrs</p>
+                    </div>
+                </div>
+                <div class="callout fragment" style="margin-top: 1em; padding: 0.8em;">
+                    <p class="small"><strong>Conclusion:</strong> 15-min metric = <strong>65-94% of actual value</strong></p>
+                    <p class="small success">✅ Conservative and defensible for ROI calculations</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>Actual Range Per Request</h2>
+                <div class="center">
+                    <p>Based on this project's data:</p>
+                    <p class="stat fragment">16-23 minutes</p>
+                    <p class="fragment">of mid-level developer time per premium request</p>
+                </div>
+                <div class="callout fragment" style="margin-top: 2em;">
+                    <p class="small"><strong>Why use 15 minutes?</strong></p>
+                    <ul class="small">
+                        <li>Conservative floor estimate</li>
+                        <li>Accounts for variation across tasks</li>
+                        <li>Defensible in financial discussions</li>
+                        <li>Better to under-promise and over-deliver</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Key Takeaways -->
+            <section>
+                <h2>Key Takeaways</h2>
+                <ol>
+                    <li class="fragment"><strong>Premium = Capacity Investment</strong>
+                        <ul class="small"><li>300 requests/seat = 75 hours of AI assistance</li></ul>
+                    </li>
+                    <li class="fragment"><strong>Unused Capacity Expires</strong>
+                        <ul class="small"><li>Measure to avoid wasting pre-paid productivity</li></ul>
+                    </li>
+                    <li class="fragment"><strong>Low Adoption ≠ Disabled Features</strong>
+                        <ul class="small"><li>Usually an awareness & training problem</li></ul>
+                    </li>
+                    <li class="fragment"><strong>AI Can Build Production Tools</strong>
+                        <ul class="small"><li>34x productivity multiplier validated by real project</li></ul>
+                    </li>
+                    <li class="fragment"><strong>15-Minute Metric is Conservative</strong>
+                        <ul class="small"><li>Actual value: 16-23 min per request</li></ul>
+                    </li>
+                </ol>
+            </section>
+
+            <!-- Call to Action -->
+            <section class="center">
+                <h2>Try It Yourself</h2>
+                <p style="margin-top: 1em;">
+                    <a href="https://pairing4good.github.io/copilot-premium-usage-analyzer/" 
+                       style="font-size: 1.5em; color: #42affa;">
+                        pairing4good.github.io/copilot-premium-usage-analyzer
+                    </a>
+                </p>
+                <div style="margin-top: 2em;">
+                    <p class="small">📄 Full documentation & case studies available in the repo</p>
+                    <p class="small">🔓 MIT License - Use freely for client engagements</p>
+                    <p class="small">🔒 100% private - Your data never leaves the browser</p>
+                </div>
+            </section>
+
+            <!-- Questions -->
+            <section class="center">
+                <h1>Questions?</h1>
+                <div style="margin-top: 3em;">
+                    <p class="small">
+                        <a href="https://github.com/pairing4good/copilot-premium-usage-analyzer" 
+                           style="color: #42affa;">
+                            github.com/pairing4good/copilot-premium-usage-analyzer
+                        </a>
+                    </p>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.0.4/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            controls: true,
+            progress: true,
+            center: false,
+            width: 1280,
+            height: 720,
+            margin: 0.1,
+            // Enable keyboard shortcuts
+            keyboard: true,
+            // Enable overview mode
+            overview: true,
+            // Enable touch navigation
+            touch: true,
+            // Enable slide numbers
+            slideNumber: 'c/t'
+        });
+    </script>
+</body>
+</html>

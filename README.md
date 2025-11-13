@@ -10,7 +10,7 @@ Measure the ROI of your GitHub Copilot Premium investment. This analytics tool h
 
 > **🔒 Privacy First:** This tool runs 100% in your browser. No data is sent to servers. Your usage reports stay on your machine.
 
-![Upload Form](screenshots/001-form.png)
+![Upload Form](screenshots/000-report.png)
 
 ### How to Use
 
@@ -22,6 +22,9 @@ Measure the ROI of your GitHub Copilot Premium investment. This analytics tool h
 6. **Click "Analyze Report"** to see your dashboard
 
 **Don't have usage data yet?** Check "No premium request analytics CSV available" to calculate your total AI capacity potential based on seat count alone.
+
+
+![Upload Form](screenshots/001-form.png)
 
 ## 💡 Why This Tool Matters
 
