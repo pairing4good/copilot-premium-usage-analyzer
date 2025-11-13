@@ -54,7 +54,7 @@ Premium requests power **GitHub Copilot Chat** and autonomous agent features tha
 ### The Critical Question: Are Your Developers Using Premium Features?
 
 > **⚠️ ROI Reality Check**  
-> A team of 10 developers with unused quotas = **3,000 requests (750 hours) of pre-paid AI capacity lost every month.** This analyzer helps you identify if you're leaving this productivity on the table.
+> A 10-person team with unused quotas = **the equivalent of 5 extra AI-powered developers left idle each month.** This analyzer helps you see if that’s happening to you.
 
 **Premium features are available with or can be added to your licenses—but that doesn't mean developers are using them.** Many teams have low utilization simply because developers don't know these capabilities exist or how to access them.
 
