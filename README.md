@@ -1,583 +1,230 @@
 # GitHub Copilot Premium Usage Analyzer
 
-A comprehensive analytics tool for engineering leaders to measure AI developer capacity utilization and ROI from GitHub Copilot Premium features.
+Measure the ROI of your GitHub Copilot Premium investment. This analytics tool helps engineering leaders track AI capacity utilization, adoption rates, and productivity gains across their development teams.
 
-## 🌐 Live Tool
+## 🚀 Getting Started
 
-**Use the tool instantly (no download required):**  
-👉 **https://pairing4good.github.io/copilot-premium-usage-analyzer/**
+**Use instantly online:** https://pairing4good.github.io/copilot-premium-usage-analyzer/
 
-> **🔒 Privacy Guarantee:**  
-> This tool runs **100% in your browser**. No data is ever sent to any server or saved anywhere. Your usage reports remain completely private and never leave your machine. Safe to use with sensitive organizational data.
+**Or run locally:** Download `index.html` and the `src` folder, then open `index.html` in any browser.
 
-**Prefer to run locally?** Download `index.html` and run it offline - see [Quick Start](#-quick-start) section below for instructions.
-
-## 📊 Purpose
-
-This tool transforms raw GitHub Copilot Premium usage data into actionable insights for technical leadership. It answers critical questions about your AI investment:
-
-- **How much of our AI capacity are we actually using?**
-- **What's the ROI on our Copilot Premium licenses?**
-- **Which developers are leveraging AI effectively?**
-- **Are we leaving productivity gains on the table?**
-
-## 🤖 Understanding GitHub Copilot Premium Tokens
-
-### What Are Premium Tokens?
-
-GitHub Copilot comes in two tiers:
-
-**Standard Copilot** provides inline code completions and basic suggestions as you type - the familiar autocomplete experience.
-
-**Copilot Premium** unlocks advanced AI capabilities through a **token-based quota system**. Each Premium seat receives 300 tokens per month to access powerful features that go far beyond simple autocomplete.
-
-### What Premium Tokens Enable
-
-Premium tokens power **GitHub Copilot Chat** - an interactive AI pair programming experience where developers can:
-
-**🔍 Deep Code Understanding**
-- Ask complex questions about unfamiliar codebases
-- Get explanations of how legacy code works
-- Understand architectural patterns and design decisions
-- Trace dependencies and data flows
-
-**🛠️ Advanced Development Tasks**
-- Generate entire functions, classes, or modules from natural language descriptions
-- Refactor code with intelligent suggestions
-- Write comprehensive unit tests automatically
-- Debug issues through conversational troubleshooting
-
-**🎯 Context-Aware Assistance**
-- Multi-file code analysis and generation
-- Repository-wide context understanding
-- Integration with your existing codebase patterns
-- Access to premium AI models (GPT-4, Claude 3.5 Sonnet, etc.)
-
-**📝 Documentation & Reviews**
-- Generate API documentation
-- Create README files and code comments
-- Perform AI-assisted code reviews
-- Explain pull request changes
-
-**🤖 Advanced Agent Features** *(Premium)*
-
-Beyond interactive chat, Copilot Premium includes autonomous agent features that work in the background:
-
-**Copilot Code Review** - Automated pull request analysis
-- Automatically reviews pull requests for bugs, security issues, and code quality
-- Provides actionable suggestions with one-click fixes
-- Uses CodeQL for deterministic security detections
-- Integrates with your team's coding standards via custom instructions
-
-**Copilot Coding Agent** - Autonomous task completion
-- Assign GitHub issues or tasks directly to @copilot
-- Works independently in ephemeral GitHub Actions environments
-- Completes bug fixes, features, tests, refactoring, and documentation
-- Opens pull requests with proposed changes for your review
-- Iterate via @copilot mentions in PR comments
-- Enables parallel development - developers work on complex tasks while Copilot handles routine work
-
-These agent features provide significant productivity multipliers by automating code quality improvements and enabling parallel development capacity.
-
-### Why Teams Should Use Premium Tokens
-
-**Without using premium tokens**, developers are limited to basic autocomplete - useful, but only scratching the surface of AI-assisted development.
-
-**With premium tokens**, developers gain an AI pair programmer that can:
-- Reduce time spent understanding unfamiliar code from hours to minutes
-- Accelerate feature development by generating boilerplate and complex logic
-- Improve code quality through AI-assisted testing and reviews
-- Onboard new team members faster with instant codebase explanations
-- Solve blocking issues through interactive debugging sessions
-
-**The Bottom Line:** Premium tokens represent your team's capacity to leverage advanced AI for complex development tasks. Unused tokens = missed opportunities for velocity, quality, and developer satisfaction.
-
-> **💡 KEY INSIGHT**  
-> Premium tokens represent your team's capacity to leverage advanced AI for complex development tasks. **Unused tokens = missed opportunities for velocity, quality, and developer satisfaction.**
-
-This analyzer helps you measure how effectively your team is using this AI capacity and identify opportunities to increase ROI.
-
-### ⚠️ Critical: Premium Features Must Be Enabled
-
-**Premium models and capabilities are disabled by default** in most GitHub Copilot configurations. Even if your organization is paying for Premium licenses, developers cannot access these advanced features until they are explicitly enabled.
-
-#### Why This Matters for Your Organization
-
-**If premium features are disabled:**
-- ❌ Developers only get basic autocomplete (Standard Copilot behavior)
-- ❌ No access to Copilot Chat or conversational AI assistance
-- ❌ No premium AI models (GPT-4, Claude 3.5 Sonnet, etc.)
-- ❌ **Your organization is paying for Premium but receiving Standard value**
-- ❌ **300 tokens per seat per month go completely unused** - representing hundreds of hours of potential productivity gains left on the table
-
-> **⚠️ CRITICAL OPPORTUNITY**  
-> If your analyzer shows **zero or very low token usage**, premium features may not be enabled organization-wide. **This represents hundreds of hours per month of AI capacity your team is already paying for but not using.** A team of 10 developers with unused quotas = **3,000 hours (125 days) of potential productivity disappearing every month.**
-
-**If premium features are enabled:**
-- ✅ Developers can access the full suite of AI pair programming tools
-- ✅ Multi-turn conversations for complex problem solving
-- ✅ Context-aware code generation across entire repositories
-- ✅ **Actual ROI on your Premium investment**
-- ✅ **Measurable productivity gains** that this analyzer can track
-
-#### How to Enable Premium Features
-
-Organization administrators should:
-
-1. **Enable Copilot Chat**: In GitHub organization settings → Copilot → Enable "Copilot Chat in the IDE"
-2. **Enable Premium Models**: Allow access to premium AI models (GPT-4, Claude, etc.)
-3. **Communicate to Developers**: Ensure team members know these features are available and how to access them in their IDE (VS Code, Visual Studio, JetBrains, etc.)
-4. **Monitor Usage**: Use this analyzer to track adoption and ensure you're getting value from your investment
-
-> **💰 ROI REALITY CHECK**  
-> **You've already paid for 300 premium requests per developer per month.** Failing to enable premium features means paying for advanced AI capabilities while receiving only basic autocomplete. **Unused quota resets monthly - it's use it or lose it.**
-
-## 🚀 Quick Start
+> **🔒 Privacy First:** This tool runs 100% in your browser. No data is sent to servers. Your usage reports stay on your machine.
 
 ![Upload Form](screenshots/001-form.png)
 
-1. **Export your usage report** from GitHub's billing dashboard (Optional)
-   - Navigate to your GitHub organization settings
-   - Go to Billing → Usage reports
-   - Download the "Premium Request Usage Report" CSV
-   - **Note**: If you don't have access to usage reports yet, you can still use this tool to calculate your team's available AI capacity
+### How to Use
 
-2. **Open the tool** 
-   - Simply open `index.html` in any modern web browser
-   - No installation or server required
+1. **Export your usage report** from GitHub (Settings → Billing → Usage Reports → Premium Request Usage Report CSV)
+2. **Open the tool** in your browser
+3. **Upload your CSV** file (Premium Token Usage Report)
+4. **Enter your number of Copilot seat licenses** (e.g., 8)
+5. **Set your developer hourly rate** (defaults to $100/hr - adjust to your actual cost)
+6. **Click "Analyze Report"** to see your dashboard
 
-3. **Upload and analyze**
-   - Upload your CSV file (if available)
-   - Enter your total number of Copilot seat licenses (**must be at least equal to the number of unique users in your CSV file**)
-   - **Enter your average developer hourly rate** (defaults to $100/hr - adjust to match your organization's actual cost per developer hour including salary, benefits, and overhead)
-   - If you don't have a CSV file, check "No premium request analytics CSV available" to see your total capacity potential
-   - Click "Analyze Report"
+**Don't have usage data yet?** Check "No premium request analytics CSV available" to calculate your total AI capacity potential based on seat count alone.
 
-> **⚠️ VALIDATION:**  
-> If you upload a CSV file, the number of seat licenses you enter must be **at least equal to the number of unique users** in the CSV. If the seat count is too low, you'll see an error message telling you the minimum required value.
+## 💡 Why This Tool Matters
 
-### Running Without a CSV File
+GitHub Copilot Premium is a **pre-paid capacity investment**. Each developer license includes **300 premium requests per month**—equivalent to **75 hours (~ 2 weeks) of AI-assisted development capacity**.
 
-If premium request analytics are not yet available for your organization (common in the first month of Premium adoption or if features aren't enabled), you can still use this tool:
+> **💰 Know What You're Paying For:**  
+> **Your Premium investment is a capacity purchase, not just a software license.** Think of it like pre-paid cloud compute hours—except these AI hours expire if unused. Are you tracking consumption like you do AWS or Azure spend?
 
-1. Check the box: ☑️ "No premium request analytics CSV available (calculate capacity only)"
-2. Enter your number of Copilot seat licenses
-3. Click "Analyze Report"
+### What Are Premium Requests?
 
-The tool will show you:
-- **Total AI capacity** your organization has available (hours per month)
-- **Potential productivity gains** if premium features were fully utilized
-- **Dollar value** of your pre-paid AI capacity
+Premium requests power **GitHub Copilot Chat** and autonomous agent features that go far beyond basic code completion:
 
-This "capacity-only" view is valuable for:
-- **Initial planning** - Understanding the scale of AI assistance you've purchased
-- **Baseline setting** - Establishing what full utilization would look like
-- **Business case building** - Demonstrating potential ROI to justify enabling premium features
-- **First-month scenarios** - Before usage data is available from GitHub
+**AI Pair Programming**
+- Ask complex questions about unfamiliar codebases
+- Generate functions, classes, or entire modules from descriptions
+- Debug through conversational troubleshooting
+- Refactor code with intelligent suggestions
+- Write comprehensive tests automatically
 
-## 📈 What You'll See
+**Autonomous Agent Features**
+- **Copilot Code Review:** Automated pull request analysis with security scanning and actionable feedback
+- **Copilot Coding Agent:** Assign issues directly to @copilot to handle bug fixes, features, and refactoring independently
 
-### Executive Summary (Above the Fold)
+**Advanced Capabilities**
+- Multi-file code generation with repository-wide context
+- Access to premium AI models (GPT-4, Claude 3.5 Sonnet)
+- Documentation generation and code reviews
+- Interactive debugging and explanations
+
+### The Critical Question: Are Your Developers Using Premium Features?
+
+**Premium features are available with your licenses—but that doesn't mean developers are using them.** Many teams have low utilization simply because developers don't know these capabilities exist or how to access them.
+
+**Common reasons for low utilization:**
+- 🤷 Developers unaware that Chat and premium models are available
+- 📚 No training on how to leverage advanced features effectively
+- 🔕 **Premium capabilities never communicated to the team**
+- 🔒 **In some cases, organizational policies restrict access**
+
+> **⚠️ ROI Reality Check**  
+> A team of 10 developers with unused quotas = **3,000 requests (750 hours) of pre-paid AI capacity lost every month.** This analyzer helps you identify if you're leaving this productivity on the table.
+
+> **🚨 Awareness is Everything:**  
+> **The most common cause of zero utilization isn't disabled features—it's developers who don't know they exist.** When was the last time your team was shown how to use Copilot Chat, access premium models, or assign issues to @copilot?
+
+### How to Drive Adoption
+
+Organization leaders should:
+1. Verify premium features are enabled in GitHub organization settings
+2. **Communicate availability** - developers need to know what they have access to
+3. **Provide training** - show teams how to use Chat, premium models, and agent features
+4. Use this analyzer to track adoption and identify teams needing support
+
+## 📊 What You'll Measure
 
 ![Executive Dashboard](screenshots/002-exec.png)
 
-**AI Usage Overview**
-- Total Premium Tokens Used
-- Adoption Rate (% of licenses actively using premium features)
-- Token Utilization (% of available AI capacity consumed)
+### AI Usage Metrics
+- **Premium Requests Used:** Total AI interactions across your team
+- **Adoption Rate:** Percentage of licenses actively using premium features
+- **Utilization Rate:** Percentage of available AI capacity consumed
 
-**AI Developer Capacity Utilization**
-- Total Opportunity (total AI hours available across all licenses)
-- Time Saved (AI hours actually used)
-- Unused Potential (AI hours going unused)
+### AI Developer Capacity
+- **Total Opportunity:** Total AI hours included in your licenses (75 hours × number of seats)
+- **Capacity Used:** AI hours your team actually leveraged
+- **Unused Potential:** Pre-paid AI hours going unused each month
 
-### Detailed Analysis (Below the Fold)
+> **Calculation:** 1 Premium Request = 15 minutes of AI-assisted development capacity  
+> **Example:** 10 seats × 300 requests × 15 minutes = **750 hours/month of AI capacity**
+
+> **📊 Reframe Your Investment:**  
+> **You're not buying software—you're buying time.** At 75 hours per seat, a 10-person team gains nearly 5 full-time AI developers worth of capacity. Would you let actual developers sit idle? Measure utilization the same way.
+
+### Financial Impact
+All capacity metrics translate to dollar values using your specified developer hourly rate, showing:
+- Total value of your AI investment
+- Actual ROI from premium features
+- Cost of unused capacity (lost monthly)
 
 ![Detailed Report](screenshots/003-detail.png)
 
-- **Key Insights & Recommendations** - AI-generated analysis of adoption patterns, usage concentration, and optimization opportunities
-  - Detects advanced agent feature usage (Code Review & Coding Agent)
-  - Provides specific recommendations based on your team's usage patterns
-  - Highlights opportunities to leverage autonomous AI capabilities
-- **Model Distribution** - Which AI models (Claude, GPT, etc.) your team prefers, including agent features
-- **User Activity** - Top 5 power users by token consumption
-- **Daily Usage Trends** - Usage patterns over time
-- **User Details Table** - Complete breakdown by developer
+### Additional Insights
+- **AI-generated recommendations** for improving adoption and utilization
+- **Model distribution** showing which AI models your team prefers
+- **Top users** leveraging premium features most effectively
+- **Daily usage trends** to identify patterns
+- **Agent feature detection** highlighting autonomous Code Review and Coding Agent usage
 
-**Agent Feature Detection:**
+## 🎯 Unlocking Organizational Value
 
-When your usage report includes "Code Review model" or "Coding Agent model" entries, the analyzer will:
-- Highlight these advanced features in the Key Insights section
-- Quantify how many automated reviews or agent sessions were completed
-- Explain the productivity benefits of these autonomous capabilities
+### For Engineering Leaders
 
-If no agent features are detected, the analyzer will recommend enabling them with explanations of their ROI potential.
-
-## 🧮 How Calculations Work
-
-### Core Assumption
-
-**1 Premium Request = 15 Minutes of AI-Assisted Developer Capacity**
-
-GitHub Copilot Premium allocates a monthly quota measured in **premium requests** (units of AI usage). Each seat receives 300 premium requests per month.
-
-**The Calculation:**
-```
-300 premium requests × 15 minutes per request = 4,500 minutes
-4,500 minutes ÷ 60 = 75 hours of AI-assisted developer capacity per seat
-```
-
-This assumption is based on the value that AI pair programming features (like extended conversations with Claude or GPT-4) provide as **virtual developer capacity** added to your team. Each premium request represents an interaction with Copilot Chat where AI assistance handles work that would otherwise require manual developer effort - asking questions, generating code, debugging, or reviewing - effectively adding 15 minutes of productive capacity to your team for each interaction.
-
-> **📊 CAPACITY CALCULATION**  
-> **300 premium requests × 15 minutes = 75 hours of AI capacity per developer per month**  
-> This is virtual developer capacity added to your team. A team of 10 = **750 hours/month of AI-assisted development capacity** included in your Premium licenses.
->
-> **📖 See Validation:** The [CASE_STUDY_METRICS.md](CASE_STUDY_METRICS.md) document validates this 15-minute metric through real-world development of this tool, showing it's actually conservative (representing 65-94% of actual value delivered).
-
-### Why Enable These Pre-Paid Features?
-
-Organizations purchase Copilot Premium licenses as a **pre-paid investment** in developer productivity - paying upfront for 300 premium requests per developer per month. However, **these requests only deliver value when they're actually used**. 
-
-Enabling premium features is critical because:
-
-- **You've Already Paid For It**: Premium requests are included in your license cost whether used or not. Failing to enable them means paying for advanced AI capabilities while receiving only basic autocomplete functionality.
-
-- **Unused Quota Is Lost**: Unlike software licenses that can be "saved," premium requests reset monthly. Every unused request represents wasted investment - if a team of 10 developers leaves their quota untapped, that's 3,000 hours (125 days) of potential productivity gains disappearing each month.
-
-- **Competitive Advantage**: Teams that leverage AI pair programming ship features faster, onboard developers more quickly, and tackle technical debt more efficiently. Organizations that leave premium features disabled are essentially choosing to compete with one hand tied behind their back.
-
-- **Measurable ROI**: With premium features enabled and this analyzer tracking usage, leadership can demonstrate concrete ROI through metrics like time saved, adoption rates, and productivity impact - turning an abstract "AI investment" into quantifiable business value.
-
-> **🚨 BOTTOM LINE**  
-> **If your organization is paying for Copilot Premium but hasn't enabled premium features, you're funding innovation for competitors while your own teams work without the AI advantage you've already purchased.**
-
-### Token-to-Time Conversion
-
-**Core Formula:**
-```
-Total Available Minutes = Number of Seats × 300 tokens × 15 minutes per token
-Total Available Hours = Total Available Minutes ÷ 60
-```
-
-**Example with 8 seats:**
-```
-8 seats × 300 tokens × 15 minutes = 36,000 minutes
-36,000 minutes ÷ 60 = 600 hours of AI developer capacity
-```
-
-### AI Capacity Used Calculation
-
-AI capacity used is calculated based on actual token usage:
-
-```
-Capacity Used (Minutes) = Tokens Used × 15 minutes per token
-Capacity Used (Hours) = Capacity Used (Minutes) ÷ 60
-```
-
-**Example:**
-```
-851 tokens used × 15 minutes = 12,765 minutes
-12,765 minutes ÷ 60 = 212.75 hours of AI capacity utilized
-```
-
-### Unused Potential Calculation
-
-```
-Unused Tokens = Total Available Tokens - Tokens Used
-Unused Capacity (Minutes) = Unused Tokens × 15 minutes per token
-Unused Capacity (Hours) = Unused Capacity (Minutes) ÷ 60
-```
-
-**Example:**
-```
-(2,400 - 851) = 1,549 unused tokens
-1,549 tokens × 15 minutes = 23,235 minutes
-23,235 minutes ÷ 60 = 387.25 hours of unused AI capacity
-```
-
-**Validation:** AI Capacity Used + Unused Potential = Total Opportunity ✓
-
-### Dollar Value Calculation
-
-All dollar values are calculated using **your specified hourly developer rate** (defaults to $100/hour if not customized):
-
-```
-Dollar Value = Hours × Hourly Rate
-```
-
-**Example with default $100/hour rate:**
-- Total Opportunity: 600 hrs × $100 = $60,000
-- AI Capacity Used: 213 hrs × $100 = $21,300
-- Unused Potential: 387 hrs × $100 = $38,700
-
-**Example with custom $120/hour rate:**
-- Total Opportunity: 600 hrs × $120 = $72,000
-- AI Capacity Used: 213 hrs × $120 = $25,560
-- Unused Potential: 387 hrs × $120 = $46,440
-
-### Adoption Rate
-
-```
-Adoption Rate = (Active Users ÷ Total Seats) × 100
-```
-
-Where "Active Users" = developers who used at least 1 premium token during the reporting period.
-
-### Token Utilization
-
-```
-Token Utilization = (Tokens Used ÷ Total Available Tokens) × 100
-```
-
-**Example:**
-```
-(851 ÷ 2,400) × 100 = 35.5%
-```
-
-## 📋 CSV Format Requirements
-
-The tool expects GitHub's standard Premium Request Usage Report format:
-
-```csv
-date,username,product,sku,model,quantity,unit_type,applied_cost_per_quantity,gross_amount,discount_amount,net_amount,exceeds_quota,total_monthly_quota,organization,cost_center_name
-2025-10-01,developer1,copilot,copilot_premium_request,Claude Sonnet 4,5,requests,0.04,0.20,0.20,0,False,300,your-org,
-```
-
-**Required columns:**
-- `username` - Developer identifier
-- `quantity` - Number of tokens used
-- `model` - AI model name
-- `date` - Usage date
-- `net_amount` - Cost in dollars
-- `total_monthly_quota` - Monthly token allocation (typically 300)
-
-## ⚠️ Important Notes
-
-### Seat Count Validation
-
-When uploading a CSV file, **the number of seat licenses you enter must be at least equal to the number of unique users in the CSV file.** This ensures accurate adoption rate and utilization calculations. If your seat count is too low, the tool will display an error message and prompt you to increase it to the minimum required value.
-
-**Example:** If your CSV contains usage from 8 unique developers, you must enter at least 8 for the number of seat licenses.
-
-### Token Expiration
-
-**Premium tokens reset monthly and cannot be carried forward.** Unused capacity is permanently lost at the end of each billing cycle. The tool highlights this with a warning:
-
-> ⚠️ Premium request quota resets monthly. Unused quota (26 of 40 hours) is lost if not used.
-
-### Mid-Month Reports
-
-If you run a report mid-month, the "Unused Potential" represents tokens that are still available. The calculation remains valid - it shows what portion of the month's capacity has been used vs. what remains.
-
-### Developer Rate Customization
-
-The tool allows you to **customize the hourly developer rate** to match your organization's actual costs. The default is **$100/hour**, which represents a conservative industry average for fully-loaded software developer costs (salary + benefits + overhead).
-
-**To set your organization's rate:**
-- Enter your actual average hourly cost in the "Average Developer Hourly Rate" field on the upload form
-- This rate should include:
-  - Base salary (annualized and divided by working hours)
-  - Benefits (health insurance, retirement, etc.)
-  - Overhead (office space, equipment, software licenses, etc.)
-  - Typical fully-loaded rates range from $75-150/hour depending on location and seniority
-
-**All dollar values in the report** (Total Opportunity, AI Capacity Used, Unused Potential, ROI calculations) will automatically use your specified rate, providing accurate financial metrics specific to your organization.
-
-### Accuracy Limitations
-
-These calculations provide **directional insights** rather than precise measurements. Actual productivity impact varies based on:
-- Task complexity
-- Developer experience with AI tools
-- Code quality requirements
-- Domain-specific factors
-
-Use these metrics to identify trends and opportunities, not as absolute measures of value.
-
-## 🎯 Use Cases
-
-### For Engineering Managers
-
-**Optimize license allocation:**
-- Identify unused licenses that could be reallocated
-- Track adoption rates across teams
-- Measure month-over-month engagement trends
+**Optimize your investment:**
+- Identify unused licenses for reallocation
+- Track adoption trends month-over-month
+- Target low-adoption teams for enablement
 
 **Demonstrate ROI:**
-- Show leadership the dollar value of AI capacity utilized
-- Quantify productivity gains
+- Show dollar value of AI capacity utilized
+- Quantify productivity gains in business terms
 - Justify continued or expanded investment
 
 **Drive adoption:**
-- Identify power users to become AI champions
-- Target low-adoption teams for training
-- Share success patterns across the organization
+- Identify power users to champion best practices
+- Share success patterns across teams
+- Focus training where it matters most
 
-### For Engineering Directors/VPs
+### For Executives
 
-**Strategic planning:**
+**Strategic insights:**
+- Measure cost per unit of value delivered
 - Forecast capacity needs based on usage trends
-- Compare cost per seat vs. value delivered
 - Make data-driven decisions about scaling AI tools
-
-**Executive reporting:**
-- Clean, printable reports for board meetings
-- Clear ROI metrics in business terms
 - Benchmark utilization across departments
 
-### For Finance/Operations
+**Executive reporting:**
+- Clean, printable dashboards for board meetings
+- Clear ROI metrics aligned to business outcomes
+- Identify opportunities to maximize existing investment
 
-**Cost optimization:**
-- Identify unused capacity
-- Calculate cost per unit of value delivered
-- Support budget planning for next cycle
+## ⚙️ How It Works
+
+This tool converts GitHub's Premium Request Usage Report into actionable metrics using a simple calculation:
+
+**300 premium requests × 15 minutes per request = 75 hours of AI capacity per developer per month**
+
+This represents virtual developer capacity added to your team—AI assistance handling work that would otherwise require manual effort.
+
+> **Example:** A team of 10 developers = **750 hours/month of AI-assisted development capacity** included in your Premium licenses.
+
+> **⏰ Act Before Month-End:**  
+> **Unlike rollover minutes, unused AI capacity vanishes at billing cycle end.** Your team isn't "saving" quota for later—they're losing pre-paid hours forever. Track consumption weekly, not quarterly.
+
+### Key Calculations
+
+**Adoption Rate:** (Active Users ÷ Total Seats) × 100  
+**Utilization Rate:** (Requests Used ÷ Total Available Requests) × 100  
+**Capacity Used:** Requests Used × 15 minutes ÷ 60  
+**Dollar Value:** Hours × Your Developer Hourly Rate
+
+### Validation Note
+
+The 15-minute metric is validated through real-world development case studies (see [CASE_STUDY_METRICS.md](CASE_STUDY_METRICS.md)), representing a conservative estimate of actual value delivered.
+
+For detailed calculation methodology, see [TECHNICAL_DETAILS.md](TECHNICAL_DETAILS.md).
+
+## 📋 Requirements
+
+**CSV Format:** GitHub's standard Premium Request Usage Report export
+
+**Required columns:** username, quantity, model, date, net_amount, total_monthly_quota
+
+**Seat Count:** Must equal or exceed the number of unique users in your CSV file
+
+**Browser:** Chrome/Edge 90+, Firefox 88+, or Safari 14+
+
+For complete technical specifications, see [TECHNICAL_DETAILS.md](TECHNICAL_DETAILS.md).
+
+## ⚠️ Important to Know
+
+> **💡 Set Your Target Now:**  
+> **Below 30% adoption? That's a training problem, not a tool problem.** Best-in-class teams exceed 60% utilization—they didn't get there by accident. Identify your power users, document their workflows, and scale what works.
+
+**Premium requests reset monthly.** Unused capacity cannot be carried forward and is lost at billing cycle end. This tool highlights this opportunity cost.
+
+**Mid-month reports are valid.** "Unused Potential" shows what remains available in the current month.
+
+**Customize your developer rate.** Enter your actual hourly cost (salary + benefits + overhead) for accurate financial metrics. Default is $100/hour.
+
+**Directional insights, not absolute truth.** Use metrics to identify trends and opportunities. Actual productivity impact varies by task complexity and developer experience.
 
 ## 🔒 Privacy & Security
 
-This tool runs **entirely in your browser**. No data is sent to any server:
-- CSV processing happens locally using JavaScript
-- All calculations are performed client-side
-- Your usage data never leaves your machine
-- No tracking, analytics, or data collection
-
-Safe to use with sensitive organizational data.
-
-## 🛠️ Technical Details
-
-**Dependencies:**
-- [Chart.js](https://www.chartjs.org/) - Data visualization
-- [PapaParse](https://www.papaparse.com/) - CSV parsing
-
-**Browser Support:**
-- Chrome/Edge 90+
-- Firefox 88+
-- Safari 14+
-
-**Features:**
-- Fully responsive design (mobile-friendly)
-- Print-optimized layouts for reports
-- Smooth animations and transitions
-- No backend required
-
-**Built with AI:**
-- This tool was developed using an AI agent (GitHub Copilot)
-- Demonstrates the power of AI-assisted development for creating production-ready tools
-
-## 📄 License
-
-MIT License - See LICENSE file for details
-
-## 🧪 Testing & Code Quality
-
-This project uses [Playwright](https://playwright.dev/) for automated golden master (snapshot) testing and [ESLint](https://eslint.org/) for code quality enforcement.
-
-### Running Tests
-
-```bash
-# Run all tests
-npm test
-
-# Run tests in headed mode (see browser)
-npm run test:headed
-
-# Update snapshots after intentional changes
-npm run test:update
-
-# Open test UI
-npm run test:ui
-```
-
-### Code Quality
-
-```bash
-# Run linter to check code quality
-npm run lint
-
-# Auto-fix linting issues
-npm run lint:fix
-```
-
-### Test Coverage
-
-The test suite includes:
-- **Golden master tests** with visual regression testing
-- **Validation error scenarios** (e.g., insufficient seat count)
-- **Capacity-only mode** testing (no CSV upload)
-- **Full dashboard rendering** with sample data
-- **Agent feature detection** tests (Code Review & Coding Agent)
-
-### CI/CD Pipeline
-
-The project uses GitHub Actions to automatically:
-1. Run ESLint on all JavaScript files
-2. Execute all Playwright tests
-3. Upload test results and snapshots
-
-All checks run on every push and pull request to ensure code quality and functionality.
-
-## �🤝 Contributing
-
-This is an open-source tool for the developer community. Contributions welcome:
-- Bug reports
-- Feature suggestions
-- Code improvements
-- Documentation enhancements
+- **100% client-side processing** - all calculations run in your browser
+- **No data transmission** - nothing sent to servers
+- **No tracking or analytics** - your usage data stays private
+- **Safe for sensitive data** - use confidently with organizational information
 
 ## 💡 Best Practices
 
-### Monthly Reviews
+**Run monthly** to track adoption trends and measure training impact
 
-Run this analysis monthly to:
-- Track adoption trends over time
-- Identify seasonal patterns
-- Measure impact of training initiatives
-- Adjust license allocations
+**Export key metrics** each month to visualize progress over time
 
-### Team Discussions
+**Use insights for team discussions** about AI adoption barriers and success patterns
 
-Use insights to drive conversations:
-- Share power user workflows
-- Celebrate high adopters
-- Understand barriers for low adopters
-- Discuss optimization strategies
+**Celebrate wins** by sharing power user workflows and high adopter achievements
 
-### Benchmark Tracking
+**Set realistic benchmarks:**
+- 0-30% adoption: Needs immediate attention
+- 30-60% adoption: Room for improvement  
+- 60%+ adoption: Strong performance, focus on optimization
 
-Export or screenshot key metrics each month to track:
-- Adoption rate trajectory
-- Utilization percentage trends
-- Cost efficiency improvements
-- ROI evolution
+## ❓ Questions?
+
+See the comprehensive [FAQ](FAQ.md) for answers to common questions about usage, interpretation, and best practices.
 
 ## 📞 Support
 
-For issues, questions, or suggestions:
-- Open a GitHub issue
-- Review existing discussions
-- Check the FAQ section below
+For questions or issues, open a GitHub issue in this repository.
 
-## ❓ FAQ
+---
 
-**Q: Why does my "Unused Potential" seem high?**  
-A: This is common in the first few months of Copilot Premium rollout. Focus on training and evangelizing success stories from power users.
+**Built with AI:** This tool was developed using GitHub Copilot, demonstrating the power of AI-assisted development for creating production-ready applications.
 
-**Q: What's a "good" adoption rate?**  
-A: 
-- 0-30%: Low - needs immediate attention
-- 30-60%: Moderate - room for improvement
-- 60%+: Strong - optimization focus
-
-**Q: How often should I run this analysis?**  
-A: Monthly is recommended. More frequent analysis (weekly) can help during initial rollout or adoption campaigns.
-
-**Q: Can I customize the hourly developer rate?**  
-A: Yes! Enter your organization's actual average developer hourly rate in the "Average Developer Hourly Rate" field on the upload form. This should include salary, benefits, and overhead. The default is $100/hour, but you should adjust this to match your organization's actual costs for accurate ROI calculations.
-
-**Q: What if my CSV has a different format?**  
-A: The tool requires GitHub's standard export format. If you have custom data, you'll need to map it to the expected column structure.
-
-**Q: Does this work with regular Copilot (non-Premium)?**  
-A: No, this tool is specifically designed for Premium feature usage which has token-based quotas. Regular Copilot suggestions don't appear in these reports.
-
-**Q: What's the difference between "Time Saved" and actual productivity?**  
-A: "Time Saved" represents AI capacity consumed. Actual productivity impact varies by task and developer. Use Time Saved as a proxy metric, not absolute truth.
+**License:** MIT - See LICENSE file for details
