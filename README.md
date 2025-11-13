@@ -79,15 +79,15 @@ Organization leaders should:
 
 ![Executive Dashboard](screenshots/002-exec.png)
 
-### AI Usage Metrics
-- **Premium Requests Used:** Total AI interactions across your team
-- **Adoption Rate:** Percentage of licenses actively using premium features
-- **Utilization Rate:** Percentage of available AI capacity consumed
+### AI Usage Overview
+- **Total Premium Tokens Used:** Total AI interactions across your team (with average per active user)
+- **Adoption Rate:** Percentage of licenses actively using premium features (active users / total seats)
+- **Token Utilization:** Percentage of total available tokens consumed (tokens used / total available)
 
-### AI Developer Capacity
-- **Total Opportunity:** Total AI hours included in your licenses (75 hours × number of seats)
-- **Capacity Used:** AI hours your team actually leveraged
-- **Unused Potential:** Pre-paid AI hours going unused each month
+### AI Developer Capacity Utilization
+- **Total Opportunity:** Total AI hours available across all licenses with dollar value
+- **Time Saved:** AI hours actually consumed with dollar value
+- **Unused Potential:** Pre-paid AI hours going unused with dollar value (lost monthly)
 
 > **Calculation:** 1 Premium Request = 15 minutes of AI-assisted development capacity  
 > **Example:** 10 seats × 300 requests × 15 minutes = **750 hours/month of AI capacity**
