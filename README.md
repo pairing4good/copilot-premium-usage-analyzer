@@ -74,7 +74,7 @@ Beyond interactive chat, Copilot Premium includes autonomous agent features that
 - Works independently in ephemeral GitHub Actions environments
 - Completes bug fixes, features, tests, refactoring, and documentation
 - Opens pull requests with proposed changes for your review
-- Iterate via @copilot mentions in PR comments (free within same session)
+- Iterate via @copilot mentions in PR comments
 - Enables parallel development - developers work on complex tasks while Copilot handles routine work
 
 These agent features provide significant productivity multipliers by automating code quality improvements and enabling parallel development capacity.
