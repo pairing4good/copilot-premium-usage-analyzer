@@ -16,9 +16,10 @@ Measure the ROI of your GitHub Copilot Premium investment. This analytics tool h
 
 1. **Export your usage report** from GitHub (Settings → Billing → Usage Reports → Premium Request Usage Report CSV)
 2. **Open the tool** in your browser
-3. **Upload your CSV** and enter your number of Copilot seat licenses
-4. **Set your developer hourly rate** (defaults to $100/hr - adjust to your actual cost)
-5. **Click "Analyze Report"** to see your dashboard
+3. **Upload your CSV** file (Premium Token Usage Report)
+4. **Enter your number of Copilot seat licenses** (e.g., 8)
+5. **Set your developer hourly rate** (defaults to $100/hr - adjust to your actual cost)
+6. **Click "Analyze Report"** to see your dashboard
 
 **Don't have usage data yet?** Check "No premium request analytics CSV available" to calculate your total AI capacity potential based on seat count alone.
 
