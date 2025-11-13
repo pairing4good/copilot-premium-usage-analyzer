@@ -25,7 +25,7 @@ Measure the ROI of your GitHub Copilot Premium investment. This analytics tool h
 
 ## 💡 Why This Tool Matters
 
-GitHub Copilot Premium is a **pre-paid capacity investment**. Each developer license includes **300 premium requests per month**—equivalent to **75 hours of AI-assisted development capacity**.
+GitHub Copilot Premium is a **pre-paid capacity investment**. Each developer license includes **300 premium requests per month**—equivalent to **75 hours (~ 2 weeks) of AI-assisted development capacity**.
 
 ### What Are Premium Requests?
 
