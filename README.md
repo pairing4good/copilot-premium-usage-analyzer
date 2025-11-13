@@ -219,10 +219,6 @@ For complete technical specifications, see [TECHNICAL_DETAILS.md](TECHNICAL_DETA
 
 See the comprehensive [FAQ](FAQ.md) for answers to common questions about usage, interpretation, and best practices.
 
-## 📞 Support
-
-For questions or issues, open a GitHub issue in this repository.
-
 ---
 
 **Built with AI:** This tool was developed using GitHub Copilot, demonstrating the power of AI-assisted development for creating production-ready applications.
