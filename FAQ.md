@@ -344,6 +344,5 @@ Benchmarks depend on rollout maturity and organizational context.
 ## Still Have Questions?
 
 For issues, suggestions, or additional questions:
-- **GitHub Issues:** Open an issue in this repository
 - **Documentation:** Check [TECHNICAL_DETAILS.md](TECHNICAL_DETAILS.md) for implementation details
 - **Case Study:** See [CASE_STUDY_METRICS.md](CASE_STUDY_METRICS.md) for metric validation
