@@ -84,6 +84,13 @@
                     </ul>
                 </div>
             </section>
+
+            <!-- Download Report -->
+            <section>
+                <h2>Download Report</h2>
+                <p>Export your usage report from GitHub (Settings → Billing and licensing → Premium request analytics → Get usage report → Premium requests usage report)</p>
+                <img src="screenshots/000-report.png" alt="Download Report Screenshot" style="width: 80%; margin-top: 1em;">
+            </section>
             
             <!-- Live Demo Slide -->
             <section class="center">
@@ -209,83 +216,8 @@
                     <div class="fragment" style="margin-top: 1em;">
                         <h3>How We Validated It</h3>
                         <p class="small">We analyzed <strong>building this very tool</strong> as a case study:</p>
+                        <a href="https://github.com/pairing4good/copilot-premium-usage-analyzer/blob/main/CASE_STUDY_METRICS.md">https://github.com/pairing4good/copilot-premium-usage-analyzer/blob/main/CASE_STUDY_METRICS.md</a>
                     </div>
-                </div>
-            </section>
-
-            <section>
-                <h2>Case Study: Building This Tool</h2>
-                <div class="demo-box">
-                    <h3 style="color: #42affa;">AI Usage</h3>
-                    <ul class="small">
-                        <li><strong>105 premium requests</strong> consumed</li>
-                        <li><strong>~1 hour</strong> of active developer time</li>
-                    </ul>
-                </div>
-                <div class="demo-box fragment">
-                    <h3 style="color: #42affa;">Work Delivered</h3>
-                    <ul class="small">
-                        <li>800 lines of production code</li>
-                        <li>35 comprehensive tests (acceptance + unit)</li>
-                        <li>CI/CD pipeline with GitHub Actions</li>
-                        <li>Professional documentation</li>
-                        <li>Live deployment on GitHub Pages</li>
-                    </ul>
-                </div>
-            </section>
-
-            <section>
-                <h2>Manual Development Estimate</h2>
-                <p class="small">A mid-level developer without AI would need:</p>
-                <div class="demo-box">
-                    <ul class="small">
-                        <li><strong>12-17 hours:</strong> Core application (HTML, CSV parsing, calculations, charts, CSS)</li>
-                        <li><strong>7-10 hours:</strong> Testing infrastructure (Playwright setup, 35 tests)</li>
-                        <li><strong>4-7 hours:</strong> CI/CD & documentation</li>
-                        <li><strong>5-6 hours:</strong> Refactoring & polish</li>
-                    </ul>
-                    <p style="margin-top: 1em;"><strong class="stat">28-40 hours total</strong></p>
-                </div>
-                <p class="fragment small" style="margin-top: 1em;">
-                    <span class="highlight">Realistic timeline:</span> 4-5 working days
-                </p>
-            </section>
-
-            <section>
-                <h2>The Validation Math</h2>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1em; margin-top: 1em;">
-                    <div class="demo-box" style="font-size: 0.9em;">
-                        <p><strong>Using 15-min assumption:</strong></p>
-                        <p class="small">105 requests × 15 min</p>
-                        <p class="stat" style="font-size: 1.5em;">26.25 hrs</p>
-                    </div>
-                    <div class="demo-box fragment" style="font-size: 0.9em;">
-                        <p><strong>Actual manual estimate:</strong></p>
-                        <p class="small">&nbsp;</p>
-                        <p class="stat" style="font-size: 1.5em;">28-40 hrs</p>
-                    </div>
-                </div>
-                <div class="callout fragment" style="margin-top: 1em; padding: 0.8em;">
-                    <p class="small"><strong>Conclusion:</strong> 15-min metric = <strong>65-94% of actual value</strong></p>
-                    <p class="small success">✅ Conservative and defensible for ROI calculations</p>
-                </div>
-            </section>
-
-            <section>
-                <h2>Actual Range Per Request</h2>
-                <div class="center">
-                    <p>Based on this project's data:</p>
-                    <p class="stat fragment">16-23 minutes</p>
-                    <p class="fragment">of mid-level developer time per premium request</p>
-                </div>
-                <div class="callout fragment" style="margin-top: 2em;">
-                    <p class="small"><strong>Why use 15 minutes?</strong></p>
-                    <ul class="small">
-                        <li>Conservative floor estimate</li>
-                        <li>Accounts for variation across tasks</li>
-                        <li>Defensible in financial discussions</li>
-                        <li>Better to under-promise and over-deliver</li>
-                    </ul>
                 </div>
             </section>
 
@@ -304,9 +236,6 @@
                     </li>
                     <li class="fragment"><strong>AI Can Build Production Tools</strong>
                         <ul class="small"><li>34x productivity multiplier validated by real project</li></ul>
-                    </li>
-                    <li class="fragment"><strong>15-Minute Metric is Conservative</strong>
-                        <ul class="small"><li>Actual value: 16-23 min per request</li></ul>
                     </li>
                 </ol>
             </section>
